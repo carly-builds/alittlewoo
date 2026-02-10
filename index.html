@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Woo - Joanne's Momentum Growth Plan</title>
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dark-sage: #34493d;
+  --dusty-teal: #bdd1ce;
+  --soft-gold: #ded9a7;
+  --warm-cream: #f6eee4;
+  --near-black: #111111;
+  --white: #ffffff;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --card-border: 1px solid rgba(52,73,61,0.12);
+  --radius: 12px;
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--warm-cream);
+  color: var(--near-black);
+  line-height: 1.6;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+/* ============ LAYOUT ============ */
+.page-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.card {
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 28px 24px;
+  margin-bottom: 20px;
+}
+
+/* ============ TYPOGRAPHY ============ */
+h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  color: var(--dark-sage);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.25rem;
+  color: var(--dark-sage);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark-sage);
+  opacity: 0.7;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--dark-sage);
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* ============ HEADER ============ */
+.header-card {
+  text-align: center;
+  padding: 36px 24px 28px;
+}
+
+.header-card h1 { margin-bottom: 2px; }
+
+/* ============ TIMELINE ============ */
+.timeline-section {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.timeline-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--dark-sage);
+  opacity: 0.7;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.timeline-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(189,209,206,0.35);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.timeline-fill {
+  height: 100%;
+  background: var(--dusty-teal);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+  min-width: 2%;
+}
+
+.timeline-markers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.7rem;
+  color: var(--dark-sage);
+  opacity: 0.55;
+}
+
+.timeline-markers span {
+  text-align: center;
+  flex: 1;
+}
+
+/* ============ PRIVATE BROWSING WARNING ============ */
+.private-warning {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #856404;
+  text-align: center;
+  display: none;
+}
+
+/* ============ CHECKBOXES ============ */
+.task-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.task-row:last-child { border-bottom: none; }
+
+.task-row label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  flex: 1;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  padding: 2px 0;
+}
+
+.task-row input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--dusty-teal);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 2px;
+  transition: all var(--transition);
+}
+
+.task-row input[type="checkbox"]:checked {
+  background: var(--dark-sage);
+  border-color: var(--dark-sage);
+}
+
+.task-row input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid var(--white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.task-row.completed label span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* ============ DAY CHECKBOXES (Substack Notes) ============ */
+.day-checkboxes {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.day-check {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.day-check span {
+  font-size: 0.7rem;
+  color: var(--dark-sage);
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.day-check input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--dusty-teal);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition);
+}
+
+.day-check input[type="checkbox"]:checked {
+  background: var(--dark-sage);
+  border-color: var(--dark-sage);
+}
+
+.day-check input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 7px;
+  height: 11px;
+  border: solid var(--white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ============ COUNTER ============ */
+.counter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.counter-row:last-child { border-bottom: none; }
+
+.counter-label {
+  flex: 1;
+  font-size: 0.93rem;
+}
+
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.counter-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--dusty-teal);
+  background: var(--white);
+  color: var(--dark-sage);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  line-height: 1;
+}
+
+.counter-btn:hover {
+  background: var(--soft-gold);
+  border-color: var(--soft-gold);
+}
+
+.counter-val {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-sage);
+  min-width: 20px;
+  text-align: center;
+}
+
+.counter-aim {
+  font-size: 0.75rem;
+  color: var(--dark-sage);
+  opacity: 0.5;
+}
+
+/* ============ ADD TASK ============ */
+.add-task-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 8px;
+}
+
+.add-task-input {
+  flex: 1;
+  border: 1.5px solid rgba(189,209,206,0.6);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--warm-cream);
+  color: var(--near-black);
+  transition: border-color var(--transition);
+  outline: none;
+}
+
+.add-task-input:focus {
+  border-color: var(--dark-sage);
+}
+
+.add-task-input::placeholder {
+  color: rgba(52,73,61,0.4);
+}
+
+.add-task-btn {
+  border: none;
+  background: var(--dusty-teal);
+  color: var(--dark-sage);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.add-task-btn:hover {
+  background: var(--soft-gold);
+}
+
+/* ============ STATS ============ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.stats-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dark-sage);
+  text-align: center;
+  padding: 8px 4px;
+  background: rgba(189,209,206,0.2);
+  border-radius: 6px 6px 0 0;
+}
+
+.stats-label {
+  font-size: 0.82rem;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  background: rgba(189,209,206,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.stats-input-cell {
+  padding: 6px 4px;
+  text-align: center;
+  background: rgba(189,209,206,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.stats-input {
+  width: 100%;
+  max-width: 90px;
+  border: 1.5px solid rgba(189,209,206,0.5);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  text-align: center;
+  background: var(--white);
+  color: var(--near-black);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.stats-input:focus {
+  border-color: var(--dark-sage);
+}
+
+/* Stats table layout for better alignment */
+.stats-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 8px;
+}
+
+.stats-table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dark-sage);
+  text-align: center;
+  padding: 10px 8px;
+  background: rgba(189,209,206,0.15);
+}
+
+.stats-table th:first-child {
+  text-align: left;
+  border-radius: 8px 0 0 0;
+}
+
+.stats-table th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.stats-table td {
+  padding: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: 0.88rem;
+}
+
+.stats-table td:first-child {
+  font-weight: 500;
+  color: var(--near-black);
+}
+
+.stats-table td:not(:first-child) {
+  text-align: center;
+}
+
+/* ============ COLLAPSIBLE ============ */
+.collapsible-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.collapsible-header h3 {
+  margin-bottom: 0;
+}
+
+.collapse-icon {
+  font-size: 0.8rem;
+  color: var(--dark-sage);
+  opacity: 0.5;
+  transition: transform var(--transition);
+}
+
+.collapsible-body {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 600px;
+  opacity: 1;
+}
+
+.collapsible-body.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* ============ CUSTOM TASK DELETE ============ */
+.custom-task-delete {
+  background: none;
+  border: none;
+  color: rgba(52,73,61,0.3);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all var(--transition);
+  line-height: 1;
+}
+
+.custom-task-delete:hover {
+  color: #c0392b;
+  background: rgba(192,57,43,0.08);
+}
+
+/* ============ BUTTONS ============ */
+.footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--dark-sage);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  width: 100%;
+  max-width: 320px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--dark-sage);
+  border: 1.5px solid var(--dusty-teal);
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  width: 100%;
+  max-width: 320px;
+}
+
+.btn-secondary:hover {
+  background: var(--soft-gold);
+  border-color: var(--soft-gold);
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: none;
+  color: var(--dark-sage);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  opacity: 0.6;
+}
+
+.btn-danger:hover {
+  opacity: 1;
+  color: #c0392b;
+}
+
+/* ============ TOAST ============ */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dark-sage);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============ CONFIRM DIALOG ============ */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.dialog-overlay.active {
+  display: flex;
+}
+
+.dialog-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.dialog-box h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 1;
+  margin-bottom: 8px;
+}
+
+.dialog-box p {
+  font-size: 0.88rem;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.dialog-buttons button {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.dialog-cancel {
+  background: none;
+  border: 1.5px solid var(--dusty-teal);
+  color: var(--dark-sage);
+}
+
+.dialog-cancel:hover {
+  background: rgba(189,209,206,0.2);
+}
+
+.dialog-confirm {
+  background: var(--dark-sage);
+  border: none;
+  color: var(--white);
+}
+
+.dialog-confirm:hover {
+  opacity: 0.9;
+}
+
+/* ============ SECTION DIVIDER ============ */
+.pillar-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--dusty-teal);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+  .page-wrap { padding: 20px 14px 50px; }
+  .card { padding: 20px 16px; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.1rem; }
+
+  .stats-table td, .stats-table th { padding: 6px 4px; font-size: 0.8rem; }
+  .stats-input { max-width: 70px; padding: 5px 4px; font-size: 0.82rem; }
+
+  .day-checkboxes { gap: 4px; }
+  .day-check input[type="checkbox"] { width: 32px; height: 32px; }
+  .day-check input[type="checkbox"]:checked::after { left: 9px; top: 5px; width: 8px; height: 12px; }
+
+  .btn-primary, .btn-secondary { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- Private browsing warning -->
+  <div class="private-warning" id="privateWarning">
+    Heads up: It looks like you might be in a private/incognito window. Your progress won't be saved between sessions. Use a regular browser window so nothing gets lost!
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <div class="card header-card">
+    <h1>A Little Woo</h1>
+    <p class="subtitle">Joanne's Momentum Growth Plan</p>
+
+    <div class="timeline-section">
+      <div class="timeline-label-row">
+        <span>Jan 21</span>
+        <span id="timelinePercent">0%</span>
+        <span>Jul 21</span>
+      </div>
+      <div class="timeline-bar">
+        <div class="timeline-fill" id="timelineFill"></div>
+      </div>
+      <div class="timeline-markers">
+        <span>Foundation</span>
+        <span>Build</span>
+        <span>Grow</span>
+        <span>Expand</span>
+        <span>Refine</span>
+        <span>Launch</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PILLAR 1: SUBSTACK ============ -->
+  <div class="card">
+    <div class="pillar-label">Pillar 1</div>
+    <h2>Substack - Weekly Tasks</h2>
+
+    <div class="task-row" data-key="substack-essay">
+      <label>
+        <input type="checkbox" data-task="substack-essay">
+        <span>Long-form essay published (biweekly)</span>
+      </label>
+    </div>
+
+    <div style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04);">
+      <div style="font-size: 0.93rem; margin-bottom: 4px;">Substack Notes</div>
+      <div class="day-checkboxes">
+        <div class="day-check"><span>M</span><input type="checkbox" data-task="substack-notes-mon"></div>
+        <div class="day-check"><span>T</span><input type="checkbox" data-task="substack-notes-tue"></div>
+        <div class="day-check"><span>W</span><input type="checkbox" data-task="substack-notes-wed"></div>
+        <div class="day-check"><span>Th</span><input type="checkbox" data-task="substack-notes-thu"></div>
+        <div class="day-check"><span>F</span><input type="checkbox" data-task="substack-notes-fri"></div>
+        <div class="day-check"><span>S</span><input type="checkbox" data-task="substack-notes-sat"></div>
+        <div class="day-check"><span>Su</span><input type="checkbox" data-task="substack-notes-sun"></div>
+      </div>
+    </div>
+
+    <div class="counter-row" data-key="substack-comments">
+      <span class="counter-label">Commented on other Substacks</span>
+      <div class="counter-controls">
+        <button class="counter-btn" data-action="dec" data-counter="substack-comments">-</button>
+        <span class="counter-val" data-display="substack-comments">0</span>
+        <button class="counter-btn" data-action="inc" data-counter="substack-comments">+</button>
+        <span class="counter-aim">/ 5</span>
+      </div>
+    </div>
+
+    <div class="task-row" data-key="substack-collab">
+      <label>
+        <input type="checkbox" data-task="substack-collab">
+        <span>Collaboration initiated (monthly)</span>
+      </label>
+    </div>
+
+    <div id="custom-substack-weekly"></div>
+    <div class="add-task-row">
+      <input type="text" class="add-task-input" placeholder="+ Add task" data-section="substack-weekly" maxlength="120">
+      <button class="add-task-btn" data-section="substack-weekly">Add</button>
+    </div>
+  </div>
+
+  <!-- ============ PILLAR 2: LINKEDIN ============ -->
+  <div class="card">
+    <div class="pillar-label">Pillar 2</div>
+    <h2>LinkedIn - Weekly Tasks</h2>
+
+    <div class="counter-row">
+      <span class="counter-label">Posts this week</span>
+      <div class="counter-controls">
+        <button class="counter-btn" data-action="dec" data-counter="linkedin-posts">-</button>
+        <span class="counter-val" data-display="linkedin-posts">0</span>
+        <button class="counter-btn" data-action="inc" data-counter="linkedin-posts">+</button>
+        <span class="counter-aim">/ 2</span>
+      </div>
+    </div>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-task="linkedin-engagement">
+        <span>Meaningful engagement on other posts</span>
+      </label>
+    </div>
+
+    <div id="custom-linkedin-weekly"></div>
+    <div class="add-task-row">
+      <input type="text" class="add-task-input" placeholder="+ Add task" data-section="linkedin-weekly" maxlength="120">
+      <button class="add-task-btn" data-section="linkedin-weekly">Add</button>
+    </div>
+  </div>
+
+  <!-- ============ PILLAR 3: INSTAGRAM ============ -->
+  <div class="card">
+    <div class="pillar-label">Pillar 3</div>
+    <h2>Instagram - Weekly Tasks</h2>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-task="ig-carousel">
+        <span>Instagram carousel created from essay</span>
+      </label>
+    </div>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-task="ig-stories">
+        <span>Instagram stories posted</span>
+      </label>
+    </div>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-task="ig-engagement">
+        <span>Meaningful engagement on other posts/accounts</span>
+      </label>
+    </div>
+
+    <div id="custom-ig-weekly"></div>
+    <div class="add-task-row">
+      <input type="text" class="add-task-input" placeholder="+ Add task" data-section="ig-weekly" maxlength="120">
+      <button class="add-task-btn" data-section="ig-weekly">Add</button>
+    </div>
+  </div>
+
+  <!-- ============ STATS CHECKPOINTS ============ -->
+  <div class="card">
+    <h2>Stats Checkpoints</h2>
+    <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 14px;">Enter your numbers at three points to see growth over time.</p>
+
+    <div style="overflow-x: auto;">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th style="text-align:left; min-width: 140px;"></th>
+            <th>Beginning<br><span style="font-weight:400; font-size:0.65rem;">Month 1</span></th>
+            <th>Midpoint<br><span style="font-weight:400; font-size:0.65rem;">Month 3</span></th>
+            <th>End<br><span style="font-weight:400; font-size:0.65rem;">Month 6</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Substack subscribers</td>
+            <td><input type="text" class="stats-input" data-stat="sub-subscribers-1" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="sub-subscribers-2" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="sub-subscribers-3" inputmode="numeric"></td>
+          </tr>
+          <tr>
+            <td>Substack followers</td>
+            <td><input type="text" class="stats-input" data-stat="sub-followers-1" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="sub-followers-2" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="sub-followers-3" inputmode="numeric"></td>
+          </tr>
+          <tr>
+            <td>Substack open rate %</td>
+            <td><input type="text" class="stats-input" data-stat="sub-openrate-1" inputmode="decimal"></td>
+            <td><input type="text" class="stats-input" data-stat="sub-openrate-2" inputmode="decimal"></td>
+            <td><input type="text" class="stats-input" data-stat="sub-openrate-3" inputmode="decimal"></td>
+          </tr>
+          <tr>
+            <td>LinkedIn followers</td>
+            <td><input type="text" class="stats-input" data-stat="li-followers-1" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="li-followers-2" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="li-followers-3" inputmode="numeric"></td>
+          </tr>
+          <tr>
+            <td>LinkedIn profile views</td>
+            <td><input type="text" class="stats-input" data-stat="li-views-1" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="li-views-2" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="li-views-3" inputmode="numeric"></td>
+          </tr>
+          <tr>
+            <td>Instagram followers</td>
+            <td><input type="text" class="stats-input" data-stat="ig-followers-1" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="ig-followers-2" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="ig-followers-3" inputmode="numeric"></td>
+          </tr>
+          <tr>
+            <td>Email list size</td>
+            <td><input type="text" class="stats-input" data-stat="email-list-1" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="email-list-2" inputmode="numeric"></td>
+            <td><input type="text" class="stats-input" data-stat="email-list-3" inputmode="numeric"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ PILLAR 4: LANDING PAGE ============ -->
+  <div class="card">
+    <div class="pillar-label">Pillar 4</div>
+    <h2>Landing Page - Milestones</h2>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="lp-live">
+        <span>Landing page live</span>
+      </label>
+    </div>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="lp-email-capture">
+        <span>Email capture & delivery system set up</span>
+      </label>
+    </div>
+
+    <div id="custom-landing-page"></div>
+    <div class="add-task-row">
+      <input type="text" class="add-task-input" placeholder="+ Add task" data-section="landing-page" maxlength="120">
+      <button class="add-task-btn" data-section="landing-page">Add</button>
+    </div>
+  </div>
+
+  <!-- ============ PILLAR 5: LEAD MAGNET ============ -->
+  <div class="card">
+    <div class="pillar-label">Pillar 5</div>
+    <h2>Lead Magnet - Milestones</h2>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="lm-topic">
+        <span>Lead magnet topic chosen</span>
+      </label>
+    </div>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="lm-draft">
+        <span>Lead magnet draft complete</span>
+      </label>
+    </div>
+
+    <div id="custom-lead-magnet"></div>
+    <div class="add-task-row">
+      <input type="text" class="add-task-input" placeholder="+ Add task" data-section="lead-magnet" maxlength="120">
+      <button class="add-task-btn" data-section="lead-magnet">Add</button>
+    </div>
+  </div>
+
+  <!-- ============ VISIBILITY & OUTREACH ============ -->
+  <div class="card">
+    <h2>Visibility & Outreach - Milestones</h2>
+
+    <!-- Phase 1 -->
+    <div class="collapsible-section">
+      <div class="collapsible-header" data-collapse="outreach-p1">
+        <h3>Phase 1: Foundation</h3>
+        <span class="collapse-icon">&#9660;</span>
+      </div>
+      <div class="collapsible-body" id="outreach-p1">
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-calendar">
+            <span>Content calendar created</span>
+          </label>
+        </div>
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-podcast-list">
+            <span>Podcast list built</span>
+          </label>
+        </div>
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-template">
+            <span>Outreach template drafted</span>
+          </label>
+        </div>
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-first5">
+            <span>First 5 outreach emails sent</span>
+          </label>
+        </div>
+        <div id="custom-outreach-p1"></div>
+        <div class="add-task-row">
+          <input type="text" class="add-task-input" placeholder="+ Add task" data-section="outreach-p1" maxlength="120">
+          <button class="add-task-btn" data-section="outreach-p1">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="collapsible-section" style="margin-top: 12px;">
+      <div class="collapsible-header" data-collapse="outreach-p2">
+        <h3>Phase 2: Momentum</h3>
+        <span class="collapse-icon">&#9660;</span>
+      </div>
+      <div class="collapsible-body" id="outreach-p2">
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-book-podcast">
+            <span>Book 1 podcast appearance</span>
+          </label>
+        </div>
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-guest-post">
+            <span>Secure 1 guest post</span>
+          </label>
+        </div>
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-pitch3">
+            <span>Pitch 3+ media outlets</span>
+          </label>
+        </div>
+        <div class="task-row">
+          <label>
+            <input type="checkbox" data-milestone="outreach-followup">
+            <span>Follow up on all outstanding outreach</span>
+          </label>
+        </div>
+        <div id="custom-outreach-p2"></div>
+        <div class="add-task-row">
+          <input type="text" class="add-task-input" placeholder="+ Add task" data-section="outreach-p2" maxlength="120">
+          <button class="add-task-btn" data-section="outreach-p2">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BOOK CLARITY ============ -->
+  <div class="card">
+    <h2>Book Clarity - Milestones</h2>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="book-thesis">
+        <span>Working thesis drafted</span>
+      </label>
+    </div>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="book-chapters">
+        <span>Rough chapter list created</span>
+      </label>
+    </div>
+
+    <div id="custom-book"></div>
+    <div class="add-task-row">
+      <input type="text" class="add-task-input" placeholder="+ Add task" data-section="book" maxlength="120">
+      <button class="add-task-btn" data-section="book">Add</button>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <div class="card" style="text-align: center;">
+    <div class="footer-actions">
+      <button class="btn-primary" id="shareBtn">Share My Progress</button>
+      <button class="btn-secondary" id="copyBtn">Copy to Clipboard</button>
+      <button class="btn-danger" id="resetBtn">Reset Weekly Tasks</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Reset confirmation dialog -->
+<div class="dialog-overlay" id="resetDialog">
+  <div class="dialog-box">
+    <h3>Start a fresh week?</h3>
+    <p>This will clear your weekly tasks (Substack, LinkedIn, Instagram). Milestones and stats won't be touched.</p>
+    <div class="dialog-buttons">
+      <button class="dialog-cancel" id="resetCancel">Cancel</button>
+      <button class="dialog-confirm" id="resetConfirm">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============ DATA LAYER ============
+  const STORAGE_KEY = 'alittlewoo_data';
+
+  const WEEKLY_TASKS = [
+    'substack-essay', 'substack-notes-mon', 'substack-notes-tue', 'substack-notes-wed',
+    'substack-notes-thu', 'substack-notes-fri', 'substack-notes-sat', 'substack-notes-sun',
+    'substack-collab', 'linkedin-engagement', 'ig-carousel', 'ig-stories', 'ig-engagement'
+  ];
+
+  const WEEKLY_COUNTERS = ['substack-comments', 'linkedin-posts'];
+
+  const WEEKLY_CUSTOM_SECTIONS = ['substack-weekly', 'linkedin-weekly', 'ig-weekly'];
+  const MILESTONE_CUSTOM_SECTIONS = ['landing-page', 'lead-magnet', 'outreach-p1', 'outreach-p2', 'book'];
+
+  function defaultData() {
+    return {
+      tasks: {},
+      milestones: {},
+      counters: {},
+      stats: {},
+      customTasks: {},
+      collapsed: {}
+    };
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultData();
+      const parsed = JSON.parse(raw);
+      // Merge with defaults for forward compatibility
+      const d = defaultData();
+      return {
+        tasks: parsed.tasks || d.tasks,
+        milestones: parsed.milestones || d.milestones,
+        counters: parsed.counters || d.counters,
+        stats: parsed.stats || d.stats,
+        customTasks: parsed.customTasks || d.customTasks,
+        collapsed: parsed.collapsed || d.collapsed
+      };
+    } catch (e) {
+      return defaultData();
+    }
+  }
+
+  function save(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      // storage full or unavailable
+    }
+  }
+
+  let data = load();
+
+  // ============ PRIVATE BROWSING DETECTION ============
+  function detectPrivateBrowsing() {
+    try {
+      const testKey = '__alittlewoo_test__';
+      localStorage.setItem(testKey, '1');
+      localStorage.removeItem(testKey);
+    } catch (e) {
+      document.getElementById('privateWarning').style.display = 'block';
+    }
+  }
+  detectPrivateBrowsing();
+
+  // ============ TIMELINE ============
+  function updateTimeline() {
+    const start = new Date(2026, 0, 21); // Jan 21, 2026
+    const end = new Date(2026, 6, 21);   // Jul 21, 2026
+    const now = new Date();
+    const total = end - start;
+    const elapsed = now - start;
+    let pct = Math.max(0, Math.min(100, (elapsed / total) * 100));
+    pct = Math.round(pct);
+
+    document.getElementById('timelineFill').style.width = pct + '%';
+    document.getElementById('timelinePercent').textContent = pct + '%';
+  }
+  updateTimeline();
+
+  // ============ RESTORE STATE ============
+  function restoreState() {
+    // Weekly tasks
+    document.querySelectorAll('[data-task]').forEach(function(el) {
+      const key = el.getAttribute('data-task');
+      if (data.tasks[key]) {
+        el.checked = true;
+        var row = el.closest('.task-row');
+        if (row) row.classList.add('completed');
+      }
+    });
+
+    // Milestones
+    document.querySelectorAll('[data-milestone]').forEach(function(el) {
+      const key = el.getAttribute('data-milestone');
+      if (data.milestones[key]) {
+        el.checked = true;
+        var row = el.closest('.task-row');
+        if (row) row.classList.add('completed');
+      }
+    });
+
+    // Counters
+    document.querySelectorAll('[data-display]').forEach(function(el) {
+      const key = el.getAttribute('data-display');
+      el.textContent = data.counters[key] || 0;
+    });
+
+    // Stats
+    document.querySelectorAll('[data-stat]').forEach(function(el) {
+      const key = el.getAttribute('data-stat');
+      if (data.stats[key] !== undefined) el.value = data.stats[key];
+    });
+
+    // Custom tasks
+    Object.keys(data.customTasks).forEach(function(section) {
+      const tasks = data.customTasks[section];
+      if (tasks && tasks.length) {
+        tasks.forEach(function(t) {
+          renderCustomTask(section, t.id, t.text, t.done);
+        });
+      }
+    });
+
+    // Collapsed state
+    Object.keys(data.collapsed).forEach(function(id) {
+      if (data.collapsed[id]) {
+        const body = document.getElementById(id);
+        if (body) body.classList.add('collapsed');
+        const header = document.querySelector('[data-collapse="' + id + '"]');
+        if (header) {
+          const icon = header.querySelector('.collapse-icon');
+          if (icon) icon.style.transform = 'rotate(-90deg)';
+        }
+      }
+    });
+  }
+
+  // ============ EVENT HANDLERS ============
+
+  // Weekly task checkboxes
+  document.querySelectorAll('[data-task]').forEach(function(el) {
+    el.addEventListener('change', function() {
+      const key = this.getAttribute('data-task');
+      data.tasks[key] = this.checked;
+      var row = this.closest('.task-row');
+      if (row) row.classList.toggle('completed', this.checked);
+      save(data);
+    });
+  });
+
+  // Milestone checkboxes
+  document.querySelectorAll('[data-milestone]').forEach(function(el) {
+    el.addEventListener('change', function() {
+      const key = this.getAttribute('data-milestone');
+      data.milestones[key] = this.checked;
+      var row = this.closest('.task-row');
+      if (row) row.classList.toggle('completed', this.checked);
+      save(data);
+    });
+  });
+
+  // Counter buttons
+  document.querySelectorAll('.counter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const key = this.getAttribute('data-counter');
+      const action = this.getAttribute('data-action');
+      let val = data.counters[key] || 0;
+      if (action === 'inc') val++;
+      else if (action === 'dec' && val > 0) val--;
+      data.counters[key] = val;
+      document.querySelector('[data-display="' + key + '"]').textContent = val;
+      save(data);
+    });
+  });
+
+  // Stats inputs
+  document.querySelectorAll('[data-stat]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      const key = this.getAttribute('data-stat');
+      data.stats[key] = this.value;
+      save(data);
+    });
+  });
+
+  // Collapsible sections
+  document.querySelectorAll('.collapsible-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-collapse');
+      const body = document.getElementById(targetId);
+      const icon = this.querySelector('.collapse-icon');
+      if (body) {
+        const isCollapsed = body.classList.toggle('collapsed');
+        data.collapsed[targetId] = isCollapsed;
+        if (icon) icon.style.transform = isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
+        save(data);
+      }
+    });
+  });
+
+  // ============ CUSTOM TASKS ============
+  let customIdCounter = Date.now();
+
+  function renderCustomTask(section, id, text, done) {
+    const isMilestone = MILESTONE_CUSTOM_SECTIONS.indexOf(section) !== -1;
+    const container = document.getElementById('custom-' + section);
+    if (!container) return;
+
+    const row = document.createElement('div');
+    row.className = 'task-row' + (done ? ' completed' : '');
+    row.setAttribute('data-custom-id', id);
+
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = !!done;
+    if (done) row.classList.add('completed');
+
+    checkbox.addEventListener('change', function() {
+      row.classList.toggle('completed', this.checked);
+      // Update in data
+      var arr = data.customTasks[section] || [];
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].id === id) { arr[i].done = this.checked; break; }
+      }
+      save(data);
+    });
+
+    const span = document.createElement('span');
+    span.textContent = text;
+
+    label.appendChild(checkbox);
+    label.appendChild(span);
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'custom-task-delete';
+    delBtn.innerHTML = '&times;';
+    delBtn.title = 'Remove task';
+    delBtn.addEventListener('click', function() {
+      row.remove();
+      var arr = data.customTasks[section] || [];
+      data.customTasks[section] = arr.filter(function(t) { return t.id !== id; });
+      save(data);
+    });
+
+    row.appendChild(label);
+    row.appendChild(delBtn);
+    container.appendChild(row);
+  }
+
+  function addCustomTask(section, text) {
+    text = text.trim();
+    if (!text) return;
+    const id = 'c' + (++customIdCounter);
+    if (!data.customTasks[section]) data.customTasks[section] = [];
+    data.customTasks[section].push({ id: id, text: text, done: false });
+    renderCustomTask(section, id, text, false);
+    save(data);
+  }
+
+  // Add task buttons
+  document.querySelectorAll('.add-task-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const section = this.getAttribute('data-section');
+      const input = this.previousElementSibling;
+      addCustomTask(section, input.value);
+      input.value = '';
+    });
+  });
+
+  // Enter key on add task inputs
+  document.querySelectorAll('.add-task-input').forEach(function(input) {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const section = this.getAttribute('data-section');
+        addCustomTask(section, this.value);
+        this.value = '';
+      }
+    });
+  });
+
+  // ============ RESET WEEKLY ============
+  var resetDialog = document.getElementById('resetDialog');
+  document.getElementById('resetBtn').addEventListener('click', function() {
+    resetDialog.classList.add('active');
+  });
+  document.getElementById('resetCancel').addEventListener('click', function() {
+    resetDialog.classList.remove('active');
+  });
+  resetDialog.addEventListener('click', function(e) {
+    if (e.target === resetDialog) resetDialog.classList.remove('active');
+  });
+  document.getElementById('resetConfirm').addEventListener('click', function() {
+    // Clear weekly tasks
+    WEEKLY_TASKS.forEach(function(key) {
+      data.tasks[key] = false;
+      var el = document.querySelector('[data-task="' + key + '"]');
+      if (el) {
+        el.checked = false;
+        var row = el.closest('.task-row');
+        if (row) row.classList.remove('completed');
+      }
+    });
+
+    // Clear weekly counters
+    WEEKLY_COUNTERS.forEach(function(key) {
+      data.counters[key] = 0;
+      var display = document.querySelector('[data-display="' + key + '"]');
+      if (display) display.textContent = '0';
+    });
+
+    // Clear custom tasks in weekly sections
+    WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
+      data.customTasks[section] = [];
+      var container = document.getElementById('custom-' + section);
+      if (container) container.innerHTML = '';
+    });
+
+    save(data);
+    resetDialog.classList.remove('active');
+    showToast('Fresh week started!');
+  });
+
+  // ============ SHARE / COPY ============
+  function generateSummary() {
+    var lines = [];
+    lines.push('MOMENTUM GROWTH PLAN - Progress Update');
+    lines.push('Joanne | ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+    lines.push('');
+
+    // Substack
+    lines.push('--- SUBSTACK (Weekly) ---');
+    lines.push(checkMark(data.tasks['substack-essay']) + ' Long-form essay published');
+    var notesDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var notesKeys = ['substack-notes-mon','substack-notes-tue','substack-notes-wed','substack-notes-thu','substack-notes-fri','substack-notes-sat','substack-notes-sun'];
+    var notesStr = notesDays.map(function(d, i) { return (data.tasks[notesKeys[i]] ? d : '_'); }).join(' ');
+    lines.push('  Notes: ' + notesStr);
+    lines.push('  Commented on other Substacks: ' + (data.counters['substack-comments'] || 0) + '/5');
+    lines.push(checkMark(data.tasks['substack-collab']) + ' Collaboration initiated');
+    addCustomSummary(lines, 'substack-weekly');
+    lines.push('');
+
+    // LinkedIn
+    lines.push('--- LINKEDIN (Weekly) ---');
+    lines.push('  Posts this week: ' + (data.counters['linkedin-posts'] || 0) + '/2');
+    lines.push(checkMark(data.tasks['linkedin-engagement']) + ' Meaningful engagement');
+    addCustomSummary(lines, 'linkedin-weekly');
+    lines.push('');
+
+    // Instagram
+    lines.push('--- INSTAGRAM (Weekly) ---');
+    lines.push(checkMark(data.tasks['ig-carousel']) + ' Carousel created from essay');
+    lines.push(checkMark(data.tasks['ig-stories']) + ' Stories posted');
+    lines.push(checkMark(data.tasks['ig-engagement']) + ' Meaningful engagement');
+    addCustomSummary(lines, 'ig-weekly');
+    lines.push('');
+
+    // Landing Page
+    lines.push('--- LANDING PAGE ---');
+    lines.push(checkMark(data.milestones['lp-live']) + ' Landing page live');
+    lines.push(checkMark(data.milestones['lp-email-capture']) + ' Email capture set up');
+    addCustomSummary(lines, 'landing-page');
+    lines.push('');
+
+    // Lead Magnet
+    lines.push('--- LEAD MAGNET ---');
+    lines.push(checkMark(data.milestones['lm-topic']) + ' Topic chosen');
+    lines.push(checkMark(data.milestones['lm-draft']) + ' Draft complete');
+    addCustomSummary(lines, 'lead-magnet');
+    lines.push('');
+
+    // Outreach
+    lines.push('--- VISIBILITY & OUTREACH ---');
+    lines.push('Phase 1:');
+    lines.push(checkMark(data.milestones['outreach-calendar']) + ' Content calendar');
+    lines.push(checkMark(data.milestones['outreach-podcast-list']) + ' Podcast list');
+    lines.push(checkMark(data.milestones['outreach-template']) + ' Outreach template');
+    lines.push(checkMark(data.milestones['outreach-first5']) + ' First 5 emails sent');
+    addCustomSummary(lines, 'outreach-p1');
+    lines.push('Phase 2:');
+    lines.push(checkMark(data.milestones['outreach-book-podcast']) + ' Book 1 podcast');
+    lines.push(checkMark(data.milestones['outreach-guest-post']) + ' Secure 1 guest post');
+    lines.push(checkMark(data.milestones['outreach-pitch3']) + ' Pitch 3+ outlets');
+    lines.push(checkMark(data.milestones['outreach-followup']) + ' Follow up');
+    addCustomSummary(lines, 'outreach-p2');
+    lines.push('');
+
+    // Book
+    lines.push('--- BOOK CLARITY ---');
+    lines.push(checkMark(data.milestones['book-thesis']) + ' Working thesis drafted');
+    lines.push(checkMark(data.milestones['book-chapters']) + ' Rough chapter list');
+    addCustomSummary(lines, 'book');
+    lines.push('');
+
+    // Stats
+    var hasAnyStats = false;
+    var statRows = [
+      ['Substack subscribers', 'sub-subscribers'],
+      ['Substack followers', 'sub-followers'],
+      ['Substack open rate %', 'sub-openrate'],
+      ['LinkedIn followers', 'li-followers'],
+      ['LinkedIn profile views', 'li-views'],
+      ['Instagram followers', 'ig-followers'],
+      ['Email list size', 'email-list']
+    ];
+    var statsLines = [];
+    statsLines.push('--- STATS ---');
+    statsLines.push('                         Begin   Mid    End');
+    statRows.forEach(function(row) {
+      var v1 = data.stats[row[1] + '-1'] || '-';
+      var v2 = data.stats[row[1] + '-2'] || '-';
+      var v3 = data.stats[row[1] + '-3'] || '-';
+      if (v1 !== '-' || v2 !== '-' || v3 !== '-') hasAnyStats = true;
+      var label = (row[0] + '                     ').substring(0, 25);
+      statsLines.push(label + v1 + '      ' + v2 + '      ' + v3);
+    });
+    if (hasAnyStats) {
+      lines = lines.concat(statsLines);
+      lines.push('');
+    }
+
+    lines.push('---');
+    lines.push('Sent from A Little Woo');
+
+    return lines.join('\n');
+  }
+
+  function checkMark(val) { return val ? '[x]' : '[ ]'; }
+
+  function addCustomSummary(lines, section) {
+    var customs = data.customTasks[section] || [];
+    customs.forEach(function(t) {
+      lines.push(checkMark(t.done) + ' ' + t.text);
+    });
+  }
+
+  document.getElementById('shareBtn').addEventListener('click', function() {
+    var summary = generateSummary();
+    var subject = encodeURIComponent('Momentum Growth Plan Update - ' + new Date().toLocaleDateString());
+    var body = encodeURIComponent(summary);
+    var mailto = 'mailto:carly@momentumgrowthplan.com?subject=' + subject + '&body=' + body;
+    window.location.href = mailto;
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function() {
+    var summary = generateSummary();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(summary).then(function() {
+        showToast('Copied!');
+      }).catch(function() {
+        fallbackCopy(summary);
+      });
+    } else {
+      fallbackCopy(summary);
+    }
+  });
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Copied!');
+    } catch (e) {
+      showToast('Could not copy. Try selecting the text manually.');
+    }
+    document.body.removeChild(ta);
+  }
+
+  // ============ TOAST ============
+  var toastTimer;
+  function showToast(msg) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2200);
+  }
+
+  // ============ INIT ============
+  restoreState();
+
+})();
+</script>
+</body>
+</html>
