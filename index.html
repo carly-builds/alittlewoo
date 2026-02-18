@@ -716,6 +716,324 @@ h3 {
   .day-check input[type="checkbox"]:checked::after { left: 9px; top: 5px; width: 8px; height: 12px; }
 
   .btn-primary, .btn-secondary { max-width: 100%; }
+  .ecosystem-visual { gap: 4px 0; }
+  .eco-node { padding: 6px 10px; font-size: 0.72rem; }
+  .eco-arrow { padding: 0 3px; font-size: 0.8rem; }
+}
+
+/* ============ PROMPT BUTTONS ============ */
+.prompt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  color: var(--dark-sage);
+  border: 1.5px solid var(--dusty-teal);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 10px;
+}
+.prompt-btn:hover {
+  background: var(--soft-gold);
+  border-color: var(--soft-gold);
+}
+.prompt-btn::before {
+  content: '\1F4CB';
+  font-size: 0.9rem;
+}
+
+/* ============ ESSAY TRACKER ============ */
+.essay-tracker-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  opacity: 0;
+  padding: 0;
+}
+.essay-tracker-panel.open {
+  max-height: 400px;
+  opacity: 1;
+  padding: 12px 0 4px;
+}
+.essay-tracker-panel .tracker-field {
+  margin-bottom: 10px;
+}
+.essay-tracker-panel .tracker-field > label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--dark-sage);
+  opacity: 0.7;
+  margin-bottom: 4px;
+  font-weight: 500;
+  cursor: default;
+}
+.essay-tracker-panel input[type="text"] {
+  width: 100%;
+  border: 1.5px solid rgba(189,209,206,0.6);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--warm-cream);
+  color: var(--near-black);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.essay-tracker-panel input[type="text"]:focus {
+  border-color: var(--dark-sage);
+}
+
+/* ============ STAR RATING ============ */
+.star-rating {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+.star-rating .star {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: rgba(189,209,206,0.5);
+  transition: color var(--transition);
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+.star-rating .star.active {
+  color: var(--soft-gold);
+}
+.star-rating .star:hover {
+  color: var(--soft-gold);
+}
+.essay-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--dusty-teal);
+  color: var(--dark-sage);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 6px;
+}
+.essay-submit-btn:hover {
+  background: var(--soft-gold);
+}
+
+/* ============ ECOSYSTEM VISUAL ============ */
+.ecosystem-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  padding: 8px 0;
+}
+.eco-node {
+  background: rgba(189,209,206,0.25);
+  border: 1.5px solid var(--dusty-teal);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dark-sage);
+  text-align: center;
+  white-space: nowrap;
+}
+.eco-arrow {
+  font-size: 0.9rem;
+  color: var(--dusty-teal);
+  padding: 0 6px;
+  font-weight: 600;
+}
+.eco-loop-arrow {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--dusty-teal);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* ============ STATS LOCK ============ */
+.stats-lock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: 1.5px solid rgba(189,209,206,0.5);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--dark-sage);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+.stats-lock-btn:hover {
+  opacity: 1;
+  border-color: var(--dusty-teal);
+}
+.stats-lock-btn.locked {
+  background: rgba(189,209,206,0.15);
+  opacity: 0.8;
+}
+.stats-input.locked {
+  background: rgba(189,209,206,0.1);
+  color: rgba(17,17,17,0.5);
+  pointer-events: none;
+  border-color: rgba(189,209,206,0.3);
+}
+.collapsible-header h2 {
+  margin-bottom: 0;
+}
+
+/* ============ MODAL ============ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-content {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+.modal-content h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 1;
+  margin-bottom: 16px;
+}
+.modal-close {
+  background: none;
+  border: 1.5px solid var(--dusty-teal);
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--dark-sage);
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 16px;
+}
+.modal-close:hover {
+  background: rgba(189,209,206,0.2);
+}
+.essay-log-entry {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 10px 0;
+}
+.essay-log-entry:last-child {
+  border-bottom: none;
+}
+.essay-log-entry .entry-title {
+  font-weight: 600;
+  font-size: 0.93rem;
+}
+.essay-log-entry .entry-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+.essay-log-entry .entry-meta {
+  font-size: 0.78rem;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+.essay-log-empty {
+  font-size: 0.88rem;
+  opacity: 0.5;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ============ WEEKLY WINS ============ */
+.weekly-wins-section {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.weekly-wins-section h3 {
+  margin-bottom: 8px;
+}
+.weekly-wins-textarea {
+  width: 100%;
+  border: 1.5px solid rgba(189,209,206,0.6);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--warm-cream);
+  color: var(--near-black);
+  outline: none;
+  transition: border-color var(--transition);
+  resize: vertical;
+  min-height: 60px;
+}
+.weekly-wins-textarea:focus {
+  border-color: var(--dark-sage);
+}
+.weekly-wins-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--dusty-teal);
+  color: var(--dark-sage);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 8px;
+}
+.weekly-wins-save:hover {
+  background: var(--soft-gold);
+}
+.wins-history {
+  margin-top: 10px;
+}
+.win-entry {
+  font-size: 0.85rem;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.win-entry:last-child {
+  border-bottom: none;
+}
+.win-entry .win-date {
+  font-size: 0.72rem;
+  opacity: 0.5;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -748,9 +1066,27 @@ h3 {
         <span>Grow</span>
         <span>Expand</span>
         <span>Refine</span>
-        <span>Launch</span>
+        <span>Revisit</span>
       </div>
     </div>
+  </div>
+
+  <!-- ============ ECOSYSTEM VISUAL ============ -->
+  <div class="card" style="text-align: center;">
+    <h2 style="margin-bottom: 4px;">The Ecosystem</h2>
+    <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 16px;">Every piece feeds the next. Here's how it all connects.</p>
+    <div class="ecosystem-visual">
+      <div class="eco-node">Essay</div>
+      <span class="eco-arrow">&rarr;</span>
+      <div class="eco-node">Notes + LinkedIn + IG</div>
+      <span class="eco-arrow">&rarr;</span>
+      <div class="eco-node">Landing Page</div>
+      <span class="eco-arrow">&rarr;</span>
+      <div class="eco-node">Email List</div>
+      <span class="eco-arrow">&rarr;</span>
+      <div class="eco-node">Substack</div>
+    </div>
+    <div class="eco-loop-arrow">&#8635; and the cycle continues</div>
   </div>
 
   <!-- ============ PILLAR 1: SUBSTACK ============ -->
@@ -763,6 +1099,28 @@ h3 {
         <input type="checkbox" data-task="substack-essay">
         <span>Long-form essay published (biweekly)</span>
       </label>
+    </div>
+
+    <div class="essay-tracker-panel" id="essayTrackerPanel">
+      <div class="tracker-field">
+        <label for="essayTitle">Essay title</label>
+        <input type="text" id="essayTitle" placeholder="What's this one called?">
+      </div>
+      <div class="tracker-field">
+        <label for="essaySubtitle">Essay subtitle</label>
+        <input type="text" id="essaySubtitle" placeholder="Subtitle or tagline">
+      </div>
+      <div class="tracker-field">
+        <label>How'd it feel? (1-5)</label>
+        <div class="star-rating" id="essayRating">
+          <button type="button" class="star" data-star="1">&#9733;</button>
+          <button type="button" class="star" data-star="2">&#9733;</button>
+          <button type="button" class="star" data-star="3">&#9733;</button>
+          <button type="button" class="star" data-star="4">&#9733;</button>
+          <button type="button" class="star" data-star="5">&#9733;</button>
+        </div>
+      </div>
+      <button type="button" class="essay-submit-btn" id="essaySubmitBtn">Save to Essay Log</button>
     </div>
 
     <div style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04);">
@@ -795,6 +1153,8 @@ h3 {
       </label>
     </div>
 
+    <button type="button" class="prompt-btn" data-prompt="substack-notes">Generate Note Ideas</button>
+
     <div id="custom-substack-weekly"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="substack-weekly" maxlength="120">
@@ -823,6 +1183,8 @@ h3 {
         <span>Meaningful engagement on other posts</span>
       </label>
     </div>
+
+    <button type="button" class="prompt-btn" data-prompt="linkedin-posts">Generate Post Ideas</button>
 
     <div id="custom-linkedin-weekly"></div>
     <div class="add-task-row">
@@ -857,6 +1219,8 @@ h3 {
       </label>
     </div>
 
+    <button type="button" class="prompt-btn" data-prompt="ig-carousel">Generate Carousel Ideas</button>
+
     <div id="custom-ig-weekly"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="ig-weekly" maxlength="120">
@@ -866,64 +1230,75 @@ h3 {
 
   <!-- ============ STATS CHECKPOINTS ============ -->
   <div class="card">
-    <h2>Stats Checkpoints</h2>
-    <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 14px;">Enter your numbers at three points to see growth over time.</p>
+    <div class="collapsible-header" data-collapse="stats-body">
+      <h2>Stats Checkpoints</h2>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body" id="stats-body">
+      <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 14px;">Enter your numbers at three points to see growth over time.</p>
 
-    <div style="overflow-x: auto;">
-      <table class="stats-table">
-        <thead>
-          <tr>
-            <th style="text-align:left; min-width: 140px;"></th>
-            <th>Beginning<br><span style="font-weight:400; font-size:0.65rem;">Month 1</span></th>
-            <th>Midpoint<br><span style="font-weight:400; font-size:0.65rem;">Month 3</span></th>
-            <th>End<br><span style="font-weight:400; font-size:0.65rem;">Month 6</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Substack subscribers</td>
-            <td><input type="text" class="stats-input" data-stat="sub-subscribers-1" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="sub-subscribers-2" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="sub-subscribers-3" inputmode="numeric"></td>
-          </tr>
-          <tr>
-            <td>Substack followers</td>
-            <td><input type="text" class="stats-input" data-stat="sub-followers-1" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="sub-followers-2" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="sub-followers-3" inputmode="numeric"></td>
-          </tr>
-          <tr>
-            <td>Substack open rate %</td>
-            <td><input type="text" class="stats-input" data-stat="sub-openrate-1" inputmode="decimal"></td>
-            <td><input type="text" class="stats-input" data-stat="sub-openrate-2" inputmode="decimal"></td>
-            <td><input type="text" class="stats-input" data-stat="sub-openrate-3" inputmode="decimal"></td>
-          </tr>
-          <tr>
-            <td>LinkedIn followers</td>
-            <td><input type="text" class="stats-input" data-stat="li-followers-1" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="li-followers-2" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="li-followers-3" inputmode="numeric"></td>
-          </tr>
-          <tr>
-            <td>LinkedIn profile views</td>
-            <td><input type="text" class="stats-input" data-stat="li-views-1" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="li-views-2" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="li-views-3" inputmode="numeric"></td>
-          </tr>
-          <tr>
-            <td>Instagram followers</td>
-            <td><input type="text" class="stats-input" data-stat="ig-followers-1" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="ig-followers-2" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="ig-followers-3" inputmode="numeric"></td>
-          </tr>
-          <tr>
-            <td>Email list size</td>
-            <td><input type="text" class="stats-input" data-stat="email-list-1" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="email-list-2" inputmode="numeric"></td>
-            <td><input type="text" class="stats-input" data-stat="email-list-3" inputmode="numeric"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="overflow-x: auto;">
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th style="text-align:left; min-width: 140px;"></th>
+              <th>Beginning<br><span style="font-weight:400; font-size:0.65rem;">Month 1</span></th>
+              <th>Midpoint<br><span style="font-weight:400; font-size:0.65rem;">Month 3</span></th>
+              <th>End<br><span style="font-weight:400; font-size:0.65rem;">Month 6</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Substack subscribers</td>
+              <td><input type="text" class="stats-input" data-stat="sub-subscribers-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="sub-subscribers-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="sub-subscribers-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td>Substack followers</td>
+              <td><input type="text" class="stats-input" data-stat="sub-followers-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="sub-followers-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="sub-followers-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td>Substack open rate %</td>
+              <td><input type="text" class="stats-input" data-stat="sub-openrate-1" inputmode="decimal"></td>
+              <td><input type="text" class="stats-input" data-stat="sub-openrate-2" inputmode="decimal"></td>
+              <td><input type="text" class="stats-input" data-stat="sub-openrate-3" inputmode="decimal"></td>
+            </tr>
+            <tr>
+              <td>LinkedIn followers</td>
+              <td><input type="text" class="stats-input" data-stat="li-followers-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="li-followers-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="li-followers-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td>LinkedIn profile views</td>
+              <td><input type="text" class="stats-input" data-stat="li-views-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="li-views-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="li-views-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td>Instagram followers</td>
+              <td><input type="text" class="stats-input" data-stat="ig-followers-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="ig-followers-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="ig-followers-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td>Email list size</td>
+              <td><input type="text" class="stats-input" data-stat="email-list-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="email-list-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="email-list-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td style="text-align:center; padding-top: 10px;"><button type="button" class="stats-lock-btn" data-lock-col="1">&#128275; Lock</button></td>
+              <td style="text-align:center; padding-top: 10px;"><button type="button" class="stats-lock-btn" data-lock-col="2">&#128275; Lock</button></td>
+              <td style="text-align:center; padding-top: 10px;"><button type="button" class="stats-lock-btn" data-lock-col="3">&#128275; Lock</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -931,6 +1306,13 @@ h3 {
   <div class="card">
     <div class="pillar-label">Pillar 4</div>
     <h2>Landing Page - Milestones</h2>
+
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="lp-drafted">
+        <span>Landing page layout, design, and copy drafted</span>
+      </label>
+    </div>
 
     <div class="task-row">
       <label>
@@ -972,6 +1354,15 @@ h3 {
       </label>
     </div>
 
+    <div class="task-row">
+      <label>
+        <input type="checkbox" data-milestone="lm-designed">
+        <span>Lead magnet designed</span>
+      </label>
+    </div>
+
+    <button type="button" class="prompt-btn" data-prompt="lead-magnet">Generate Lead Magnet Ideas</button>
+
     <div id="custom-lead-magnet"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="lead-magnet" maxlength="120">
@@ -999,7 +1390,7 @@ h3 {
         <div class="task-row">
           <label>
             <input type="checkbox" data-milestone="outreach-podcast-list">
-            <span>Podcast list built</span>
+            <span>Collaboration list built</span>
           </label>
         </div>
         <div class="task-row">
@@ -1088,10 +1479,19 @@ h3 {
   </div>
 
   <!-- ============ FOOTER ============ -->
-  <div class="card" style="text-align: center;">
-    <div class="footer-actions">
+  <div class="card">
+    <div class="weekly-wins-section">
+      <h3>Weekly Wins</h3>
+      <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 8px;">Jot down one win or insight before you reset for the week.</p>
+      <textarea class="weekly-wins-textarea" id="weeklyWinInput" placeholder="What went well this week?" rows="2"></textarea>
+      <button type="button" class="weekly-wins-save" id="saveWinBtn">Save Win</button>
+      <div class="wins-history" id="winsHistory"></div>
+    </div>
+
+    <div class="footer-actions" style="margin-top: 20px; text-align: center;">
       <button class="btn-primary" id="shareBtn">Share My Progress</button>
       <button class="btn-secondary" id="copyBtn">Copy to Clipboard</button>
+      <button class="btn-secondary" id="essayLogBtn">View Essay Log</button>
       <button class="btn-danger" id="resetBtn">Reset Weekly Tasks</button>
     </div>
   </div>
@@ -1101,11 +1501,20 @@ h3 {
 <!-- Toast notification -->
 <div class="toast" id="toast"></div>
 
+<!-- Essay log modal -->
+<div class="modal-overlay" id="essayLogModal">
+  <div class="modal-content">
+    <h3>Essay Log</h3>
+    <div id="essayLogEntries"></div>
+    <button type="button" class="modal-close" id="essayLogClose">Close</button>
+  </div>
+</div>
+
 <!-- Reset confirmation dialog -->
 <div class="dialog-overlay" id="resetDialog">
   <div class="dialog-box">
     <h3>Start a fresh week?</h3>
-    <p>This will clear your weekly tasks (Substack, LinkedIn, Instagram). Milestones and stats won't be touched.</p>
+    <p>This will clear your weekly tasks (Substack, LinkedIn, Instagram). Milestones, stats, essay log, and wins won't be touched.</p>
     <div class="dialog-buttons">
       <button class="dialog-cancel" id="resetCancel">Cancel</button>
       <button class="dialog-confirm" id="resetConfirm">Reset</button>
@@ -1138,7 +1547,10 @@ h3 {
       counters: {},
       stats: {},
       customTasks: {},
-      collapsed: {}
+      collapsed: {},
+      essayLog: [],
+      statsLocked: {},
+      weeklyWins: []
     };
   }
 
@@ -1155,7 +1567,10 @@ h3 {
         counters: parsed.counters || d.counters,
         stats: parsed.stats || d.stats,
         customTasks: parsed.customTasks || d.customTasks,
-        collapsed: parsed.collapsed || d.collapsed
+        collapsed: parsed.collapsed || d.collapsed,
+        essayLog: parsed.essayLog || d.essayLog,
+        statsLocked: parsed.statsLocked || d.statsLocked,
+        weeklyWins: parsed.weeklyWins || d.weeklyWins
       };
     } catch (e) {
       return defaultData();
@@ -1255,6 +1670,22 @@ h3 {
         }
       }
     });
+
+    // Stats locked state
+    Object.keys(data.statsLocked).forEach(function(col) {
+      if (data.statsLocked[col]) {
+        applyStatsLock(col, true);
+      }
+    });
+
+    // Essay tracker panel - open if essay was checked
+    if (data.tasks['substack-essay']) {
+      var panel = document.getElementById('essayTrackerPanel');
+      if (panel) panel.classList.add('open');
+    }
+
+    // Weekly wins
+    renderWeeklyWins();
   }
 
   // ============ EVENT HANDLERS ============
@@ -1442,6 +1873,196 @@ h3 {
     showToast('Fresh week started!');
   });
 
+  // ============ ESSAY TRACKER ============
+  var essayCheckbox = document.querySelector('[data-task="substack-essay"]');
+  var essayPanel = document.getElementById('essayTrackerPanel');
+  var currentEssayRating = 0;
+
+  if (essayCheckbox && essayPanel) {
+    essayCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        essayPanel.classList.add('open');
+      } else {
+        essayPanel.classList.remove('open');
+      }
+    });
+  }
+
+  // Star rating
+  document.querySelectorAll('#essayRating .star').forEach(function(star) {
+    star.addEventListener('click', function() {
+      currentEssayRating = parseInt(this.getAttribute('data-star'));
+      updateStarDisplay(currentEssayRating);
+    });
+  });
+
+  function updateStarDisplay(rating) {
+    document.querySelectorAll('#essayRating .star').forEach(function(star) {
+      var val = parseInt(star.getAttribute('data-star'));
+      star.classList.toggle('active', val <= rating);
+    });
+  }
+
+  // Submit essay to log
+  document.getElementById('essaySubmitBtn').addEventListener('click', function() {
+    var title = document.getElementById('essayTitle').value.trim();
+    var subtitle = document.getElementById('essaySubtitle').value.trim();
+    if (!title) {
+      showToast('Add a title first!');
+      return;
+    }
+    var entry = {
+      title: title,
+      subtitle: subtitle,
+      rating: currentEssayRating,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+    data.essayLog.push(entry);
+    save(data);
+    document.getElementById('essayTitle').value = '';
+    document.getElementById('essaySubtitle').value = '';
+    currentEssayRating = 0;
+    updateStarDisplay(0);
+    showToast('Essay saved!');
+  });
+
+  // ============ PROMPT BUTTONS ============
+  const PROMPTS = {
+    'substack-notes': 'You are a Substack growth strategist helping me repurpose my long-form essays into Substack Notes. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**My Notes style:**\n- lowercase, conversational\n- parentheticals for context (like this)\n- explores vs. teaches\n- genuine questions, not rhetorical ones\n- link to recent essays or threads when relevant\n\n**What I need from you:**\nFor the essay I paste below, please give me five ideas for Substack Notes related to the essay.\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]',
+
+    'linkedin-posts': 'You are a LinkedIn content strategist helping me repurpose my Substack essays into LinkedIn posts. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**My LinkedIn strategy:**\n- Repost every essay with a compelling excerpt\n- Pull 1-2 standalone "spicy takes" from each essay as text-only LinkedIn posts\n- Voice: lowercase, conversational, vulnerable but grounded. Not preachy. Not salesy. Exploring, not teaching.\n- Don\'t shy away from the woo content. My audience wants the middle ground.\n\n**What I need from you:**\nFor the essay I paste below, please give me:\n1. Three ideas for interesting LinkedIn posts related to the essay\n2. Once I pick one, create an outline of that post with my voice and writing style in mind\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]',
+
+    'ig-carousel': 'You are an Instagram content strategist helping me repurpose my Substack essays into Instagram content. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**My Instagram strategy:**\n- Turn essays into carousels (5-8 slides, one idea per slide, pulled directly from the essay)\n- Post 1-2 carousels per essay\n- Stories: share when essay drops, behind-the-scenes, quick thoughts\n- Voice: lowercase, conversational, vulnerable but grounded. Not preachy. Not salesy.\n\n**What I need from you:**\nFor the essay I paste below, please give me:\n1. Three ideas for Instagram carousel posts related to the essay\n2. Once I pick one, pull out the most interesting, value-packed lines from the essay that would work as individual carousel slides. Use your knowledge of what performs well on Instagram carousels (strong hooks on slide 1, one idea per slide, conversational tone, ending with a clear CTA or takeaway).\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]',
+
+    'lead-magnet': 'You are a content strategist helping me create lead magnets from my Substack essays. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**What is a lead magnet?** A free, valuable resource people download in exchange for their email address. It should be practical, shareable, and connected to my content.\n\n**What I need from you:**\nFor the essay I paste below, please give me three ideas for a lead magnet I could create from this topic. For each idea, tell me the format (checklist, guide, worksheet, etc.), a working title, and a one-sentence description of what it would include.\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]'
+  };
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('Copied!');
+      }).catch(function() {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  document.querySelectorAll('.prompt-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var key = this.getAttribute('data-prompt');
+      var text = PROMPTS[key];
+      if (text) {
+        copyToClipboard(text);
+      }
+    });
+  });
+
+  // ============ STATS LOCK ============
+  function applyStatsLock(col, locked) {
+    document.querySelectorAll('[data-stat$="-' + col + '"]').forEach(function(input) {
+      if (locked) {
+        input.classList.add('locked');
+        input.readOnly = true;
+      } else {
+        input.classList.remove('locked');
+        input.readOnly = false;
+      }
+    });
+    var btn = document.querySelector('[data-lock-col="' + col + '"]');
+    if (btn) {
+      btn.innerHTML = locked ? '&#128274; Locked' : '&#128275; Lock';
+      btn.classList.toggle('locked', locked);
+    }
+  }
+
+  document.querySelectorAll('.stats-lock-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var col = this.getAttribute('data-lock-col');
+      var isLocked = !!data.statsLocked[col];
+      data.statsLocked[col] = !isLocked;
+      applyStatsLock(col, !isLocked);
+      save(data);
+    });
+  });
+
+  // ============ ESSAY LOG MODAL ============
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderEssayLog() {
+    var container = document.getElementById('essayLogEntries');
+    var entries = data.essayLog || [];
+    if (entries.length === 0) {
+      container.innerHTML = '<div class="essay-log-empty">No essays logged yet. Check off your essay and save one!</div>';
+      return;
+    }
+    var html = '';
+    for (var i = entries.length - 1; i >= 0; i--) {
+      var e = entries[i];
+      var stars = '';
+      for (var s = 0; s < 5; s++) {
+        stars += s < e.rating ? '\u2605' : '\u2606';
+      }
+      html += '<div class="essay-log-entry">';
+      html += '<div class="entry-title">' + escapeHtml(e.title) + '</div>';
+      if (e.subtitle) html += '<div class="entry-subtitle">' + escapeHtml(e.subtitle) + '</div>';
+      html += '<div class="entry-meta">' + stars + ' \u00B7 ' + e.date + '</div>';
+      html += '</div>';
+    }
+    container.innerHTML = html;
+  }
+
+  document.getElementById('essayLogBtn').addEventListener('click', function() {
+    renderEssayLog();
+    document.getElementById('essayLogModal').classList.add('active');
+  });
+
+  document.getElementById('essayLogClose').addEventListener('click', function() {
+    document.getElementById('essayLogModal').classList.remove('active');
+  });
+
+  document.getElementById('essayLogModal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('active');
+  });
+
+  // ============ WEEKLY WINS ============
+  function renderWeeklyWins() {
+    var container = document.getElementById('winsHistory');
+    var wins = data.weeklyWins || [];
+    if (wins.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var html = '';
+    for (var i = wins.length - 1; i >= 0; i--) {
+      html += '<div class="win-entry">';
+      html += '<span class="win-date">' + wins[i].date + '</span> ';
+      html += escapeHtml(wins[i].text);
+      html += '</div>';
+    }
+    container.innerHTML = html;
+  }
+
+  document.getElementById('saveWinBtn').addEventListener('click', function() {
+    var input = document.getElementById('weeklyWinInput');
+    var text = input.value.trim();
+    if (!text) return;
+    var entry = {
+      text: text,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+    data.weeklyWins.push(entry);
+    save(data);
+    input.value = '';
+    renderWeeklyWins();
+    showToast('Win saved!');
+  });
+
   // ============ SHARE / COPY ============
   function generateSummary() {
     var lines = [];
@@ -1478,6 +2099,7 @@ h3 {
 
     // Landing Page
     lines.push('--- LANDING PAGE ---');
+    lines.push(checkMark(data.milestones['lp-drafted']) + ' Landing page layout, design, and copy drafted');
     lines.push(checkMark(data.milestones['lp-live']) + ' Landing page live');
     lines.push(checkMark(data.milestones['lp-email-capture']) + ' Email capture set up');
     addCustomSummary(lines, 'landing-page');
@@ -1487,6 +2109,7 @@ h3 {
     lines.push('--- LEAD MAGNET ---');
     lines.push(checkMark(data.milestones['lm-topic']) + ' Topic chosen');
     lines.push(checkMark(data.milestones['lm-draft']) + ' Draft complete');
+    lines.push(checkMark(data.milestones['lm-designed']) + ' Lead magnet designed');
     addCustomSummary(lines, 'lead-magnet');
     lines.push('');
 
@@ -1494,7 +2117,7 @@ h3 {
     lines.push('--- VISIBILITY & OUTREACH ---');
     lines.push('Phase 1:');
     lines.push(checkMark(data.milestones['outreach-calendar']) + ' Content calendar');
-    lines.push(checkMark(data.milestones['outreach-podcast-list']) + ' Podcast list');
+    lines.push(checkMark(data.milestones['outreach-podcast-list']) + ' Collaboration list');
     lines.push(checkMark(data.milestones['outreach-template']) + ' Outreach template');
     lines.push(checkMark(data.milestones['outreach-first5']) + ' First 5 emails sent');
     addCustomSummary(lines, 'outreach-p1');
@@ -1565,15 +2188,7 @@ h3 {
 
   document.getElementById('copyBtn').addEventListener('click', function() {
     var summary = generateSummary();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(summary).then(function() {
-        showToast('Copied!');
-      }).catch(function() {
-        fallbackCopy(summary);
-      });
-    } else {
-      fallbackCopy(summary);
-    }
+    copyToClipboard(summary);
   });
 
   function fallbackCopy(text) {
