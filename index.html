@@ -948,42 +948,74 @@ h3 {
 .modal-close:hover {
   background: rgba(189,209,206,0.2);
 }
-.essay-log-entry {
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 10px 0;
+/* ============ PROGRESS LOG ============ */
+.dialog-box.dialog-wide {
+  max-width: 480px;
+  text-align: left;
 }
-.essay-log-entry:last-child {
-  border-bottom: none;
+.dialog-box.dialog-wide h3 {
+  text-align: center;
 }
-.essay-log-entry .entry-title {
+.dialog-box.dialog-wide .dialog-buttons {
+  margin-top: 20px;
+}
+.submit-summary-banner {
+  background: rgba(189,209,206,0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
   font-weight: 600;
-  font-size: 0.93rem;
+  color: var(--dark-sage);
+  text-align: center;
+  margin-bottom: 16px;
 }
-.essay-log-entry .entry-subtitle {
+.submit-pillar {
+  margin-bottom: 12px;
+}
+.submit-pillar-name {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark-sage);
+  opacity: 0.6;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.submit-pillar-items {
   font-size: 0.85rem;
-  opacity: 0.7;
+  line-height: 1.6;
+  padding-left: 4px;
 }
-.essay-log-entry .entry-meta {
+.submit-pillar-items .item-done {
+  opacity: 1;
+}
+.submit-pillar-items .item-not-done {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+.submit-essay-card {
+  background: rgba(222,217,167,0.2);
+  border: 1px solid rgba(222,217,167,0.4);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+}
+.submit-essay-card .essay-card-title {
+  font-weight: 600;
+}
+.submit-essay-card .essay-card-meta {
   font-size: 0.78rem;
-  opacity: 0.5;
+  opacity: 0.6;
   margin-top: 2px;
 }
-.essay-log-empty {
-  font-size: 0.88rem;
-  opacity: 0.5;
-  text-align: center;
-  padding: 20px 0;
+.submit-reflection-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--dark-sage);
 }
-
-/* ============ WEEKLY WINS ============ */
-.weekly-wins-section {
-  text-align: left;
-  margin-bottom: 20px;
-}
-.weekly-wins-section h3 {
-  margin-bottom: 8px;
-}
-.weekly-wins-textarea {
+.submit-reflection-textarea {
   width: 100%;
   border: 1.5px solid rgba(189,209,206,0.6);
   border-radius: 8px;
@@ -997,43 +1029,79 @@ h3 {
   resize: vertical;
   min-height: 60px;
 }
-.weekly-wins-textarea:focus {
+.submit-reflection-textarea:focus {
   border-color: var(--dark-sage);
 }
-.weekly-wins-save {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--dusty-teal);
-  color: var(--dark-sage);
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all var(--transition);
-  margin-top: 8px;
+.progress-entry {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0;
 }
-.weekly-wins-save:hover {
-  background: var(--soft-gold);
-}
-.wins-history {
-  margin-top: 10px;
-}
-.win-entry {
-  font-size: 0.85rem;
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-}
-.win-entry:last-child {
+.progress-entry:last-child {
   border-bottom: none;
 }
-.win-entry .win-date {
-  font-size: 0.72rem;
-  opacity: 0.5;
+.progress-entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 12px 0;
+  user-select: none;
+}
+.progress-entry-header:hover {
+  opacity: 0.8;
+}
+.progress-entry-date {
   font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--dark-sage);
+}
+.progress-entry-arrow {
+  font-size: 0.75rem;
+  color: var(--dark-sage);
+  opacity: 0.5;
+  transition: transform var(--transition);
+}
+.progress-entry.expanded .progress-entry-arrow {
+  transform: rotate(90deg);
+}
+.progress-entry-summary {
+  font-size: 0.82rem;
+  opacity: 0.6;
+  margin-top: -4px;
+  padding-bottom: 4px;
+}
+.progress-entry-reflection {
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.7;
+  padding: 4px 0 8px;
+  line-height: 1.5;
+}
+.progress-entry-essay {
+  background: rgba(222,217,167,0.15);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.progress-entry-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.progress-entry.expanded .progress-entry-detail {
+  max-height: 800px;
+  opacity: 1;
+  padding-bottom: 12px;
+}
+.progress-empty {
+  font-size: 0.88rem;
+  opacity: 0.5;
+  text-align: center;
+  padding: 24px 0;
+  line-height: 1.6;
 }
 </style>
 </head>
@@ -1153,13 +1221,13 @@ h3 {
       </label>
     </div>
 
-    <button type="button" class="prompt-btn" data-prompt="substack-notes">Generate Note Ideas</button>
-
     <div id="custom-substack-weekly"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="substack-weekly" maxlength="120">
       <button class="add-task-btn" data-section="substack-weekly">Add</button>
     </div>
+
+    <button type="button" class="prompt-btn" data-prompt="substack-notes">Generate Note Ideas</button>
   </div>
 
   <!-- ============ PILLAR 2: LINKEDIN ============ -->
@@ -1184,13 +1252,13 @@ h3 {
       </label>
     </div>
 
-    <button type="button" class="prompt-btn" data-prompt="linkedin-posts">Generate Post Ideas</button>
-
     <div id="custom-linkedin-weekly"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="linkedin-weekly" maxlength="120">
       <button class="add-task-btn" data-section="linkedin-weekly">Add</button>
     </div>
+
+    <button type="button" class="prompt-btn" data-prompt="linkedin-posts">Generate Post Ideas</button>
   </div>
 
   <!-- ============ PILLAR 3: INSTAGRAM ============ -->
@@ -1219,12 +1287,21 @@ h3 {
       </label>
     </div>
 
-    <button type="button" class="prompt-btn" data-prompt="ig-carousel">Generate Carousel Ideas</button>
-
     <div id="custom-ig-weekly"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="ig-weekly" maxlength="120">
       <button class="add-task-btn" data-section="ig-weekly">Add</button>
+    </div>
+
+    <button type="button" class="prompt-btn" data-prompt="ig-carousel">Generate Carousel Ideas</button>
+  </div>
+
+  <!-- ============ WEEKLY ACTIONS ============ -->
+  <div class="card">
+    <div class="footer-actions" style="text-align: center;">
+      <button class="btn-primary" id="submitWeekBtn">Submit Week</button>
+      <button class="btn-secondary" id="shareBtn">Share My Progress</button>
+      <button class="btn-secondary" id="progressLogBtn">View Progress Log</button>
     </div>
   </div>
 
@@ -1478,46 +1555,30 @@ h3 {
     </div>
   </div>
 
-  <!-- ============ FOOTER ============ -->
-  <div class="card">
-    <div class="weekly-wins-section">
-      <h3>Weekly Wins</h3>
-      <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 8px;">Jot down one win or insight before you reset for the week.</p>
-      <textarea class="weekly-wins-textarea" id="weeklyWinInput" placeholder="What went well this week?" rows="2"></textarea>
-      <button type="button" class="weekly-wins-save" id="saveWinBtn">Save Win</button>
-      <div class="wins-history" id="winsHistory"></div>
-    </div>
-
-    <div class="footer-actions" style="margin-top: 20px; text-align: center;">
-      <button class="btn-primary" id="shareBtn">Share My Progress</button>
-      <button class="btn-secondary" id="copyBtn">Copy to Clipboard</button>
-      <button class="btn-secondary" id="essayLogBtn">View Essay Log</button>
-      <button class="btn-danger" id="resetBtn">Reset Weekly Tasks</button>
-    </div>
-  </div>
-
 </div>
 
 <!-- Toast notification -->
 <div class="toast" id="toast"></div>
 
-<!-- Essay log modal -->
-<div class="modal-overlay" id="essayLogModal">
+<!-- Progress Log modal -->
+<div class="modal-overlay" id="progressLogModal">
   <div class="modal-content">
-    <h3>Essay Log</h3>
-    <div id="essayLogEntries"></div>
-    <button type="button" class="modal-close" id="essayLogClose">Close</button>
+    <h3>Progress Log</h3>
+    <div id="progressLogEntries"></div>
+    <button type="button" class="modal-close" id="progressLogClose">Close</button>
   </div>
 </div>
 
-<!-- Reset confirmation dialog -->
-<div class="dialog-overlay" id="resetDialog">
-  <div class="dialog-box">
-    <h3>Start a fresh week?</h3>
-    <p>This will clear your weekly tasks (Substack, LinkedIn, Instagram). Milestones, stats, essay log, and wins won't be touched.</p>
+<!-- Submit Week dialog -->
+<div class="dialog-overlay" id="submitWeekDialog">
+  <div class="dialog-box dialog-wide">
+    <h3>Submit this week?</h3>
+    <div id="submitWeekPreview"></div>
+    <div class="submit-reflection-label">What was your biggest win or insight this week?</div>
+    <textarea class="submit-reflection-textarea" id="submitReflection" placeholder="One sentence is plenty." rows="2"></textarea>
     <div class="dialog-buttons">
-      <button class="dialog-cancel" id="resetCancel">Cancel</button>
-      <button class="dialog-confirm" id="resetConfirm">Reset</button>
+      <button class="dialog-cancel" id="submitWeekCancel">Cancel</button>
+      <button class="dialog-confirm" id="submitWeekConfirm">Submit & Start Fresh</button>
     </div>
   </div>
 </div>
@@ -1550,7 +1611,8 @@ h3 {
       collapsed: {},
       essayLog: [],
       statsLocked: {},
-      weeklyWins: []
+      weeklyWins: [],
+      progressLog: []
     };
   }
 
@@ -1570,7 +1632,8 @@ h3 {
         collapsed: parsed.collapsed || d.collapsed,
         essayLog: parsed.essayLog || d.essayLog,
         statsLocked: parsed.statsLocked || d.statsLocked,
-        weeklyWins: parsed.weeklyWins || d.weeklyWins
+        weeklyWins: parsed.weeklyWins || d.weeklyWins,
+        progressLog: parsed.progressLog || d.progressLog
       };
     } catch (e) {
       return defaultData();
@@ -1683,9 +1746,6 @@ h3 {
       var panel = document.getElementById('essayTrackerPanel');
       if (panel) panel.classList.add('open');
     }
-
-    // Weekly wins
-    renderWeeklyWins();
   }
 
   // ============ EVENT HANDLERS ============
@@ -1831,48 +1891,6 @@ h3 {
     });
   });
 
-  // ============ RESET WEEKLY ============
-  var resetDialog = document.getElementById('resetDialog');
-  document.getElementById('resetBtn').addEventListener('click', function() {
-    resetDialog.classList.add('active');
-  });
-  document.getElementById('resetCancel').addEventListener('click', function() {
-    resetDialog.classList.remove('active');
-  });
-  resetDialog.addEventListener('click', function(e) {
-    if (e.target === resetDialog) resetDialog.classList.remove('active');
-  });
-  document.getElementById('resetConfirm').addEventListener('click', function() {
-    // Clear weekly tasks
-    WEEKLY_TASKS.forEach(function(key) {
-      data.tasks[key] = false;
-      var el = document.querySelector('[data-task="' + key + '"]');
-      if (el) {
-        el.checked = false;
-        var row = el.closest('.task-row');
-        if (row) row.classList.remove('completed');
-      }
-    });
-
-    // Clear weekly counters
-    WEEKLY_COUNTERS.forEach(function(key) {
-      data.counters[key] = 0;
-      var display = document.querySelector('[data-display="' + key + '"]');
-      if (display) display.textContent = '0';
-    });
-
-    // Clear custom tasks in weekly sections
-    WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
-      data.customTasks[section] = [];
-      var container = document.getElementById('custom-' + section);
-      if (container) container.innerHTML = '';
-    });
-
-    save(data);
-    resetDialog.classList.remove('active');
-    showToast('Fresh week started!');
-  });
-
   // ============ ESSAY TRACKER ============
   var essayCheckbox = document.querySelector('[data-task="substack-essay"]');
   var essayPanel = document.getElementById('essayTrackerPanel');
@@ -1924,6 +1942,198 @@ h3 {
     currentEssayRating = 0;
     updateStarDisplay(0);
     showToast('Essay saved!');
+  });
+
+  // ============ SUBMIT WEEK ============
+  function buildWeekSnapshot() {
+    // Compute task completion count
+    var tasksCompleted = 0;
+    var tasksTotal = WEEKLY_TASKS.length;
+    var taskStates = {};
+    WEEKLY_TASKS.forEach(function(key) {
+      var done = !!data.tasks[key];
+      taskStates[key] = done;
+      if (done) tasksCompleted++;
+    });
+
+    // Counter values
+    var counterValues = {};
+    WEEKLY_COUNTERS.forEach(function(key) {
+      counterValues[key] = data.counters[key] || 0;
+    });
+
+    // Custom tasks snapshot (weekly sections only)
+    var customTasksSnapshot = {};
+    WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
+      var tasks = data.customTasks[section] || [];
+      customTasksSnapshot[section] = tasks.map(function(t) {
+        return { text: t.text, done: t.done };
+      });
+      // Count custom tasks
+      tasks.forEach(function(t) {
+        tasksTotal++;
+        if (t.done) tasksCompleted++;
+      });
+    });
+
+    // Notes days string
+    var notesDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var notesKeys = ['substack-notes-mon','substack-notes-tue','substack-notes-wed','substack-notes-thu','substack-notes-fri','substack-notes-sat','substack-notes-sun'];
+    var notesDayStr = notesDays.map(function(d, i) {
+      return data.tasks[notesKeys[i]] ? d : '_';
+    }).join(' ');
+
+    // Essay: grab from essayLog if the essay checkbox is checked and there's a recent entry
+    var essay = null;
+    if (data.tasks['substack-essay'] && data.essayLog.length > 0) {
+      var latest = data.essayLog[data.essayLog.length - 1];
+      essay = { title: latest.title, subtitle: latest.subtitle, rating: latest.rating };
+    }
+
+    // Summary line
+    var summaryLine = tasksCompleted + '/' + tasksTotal + ' tasks';
+    summaryLine += ' \u00B7 ' + counterValues['substack-comments'] + '/5 comments';
+    summaryLine += ' \u00B7 ' + counterValues['linkedin-posts'] + '/2 posts';
+
+    return {
+      dateLabel: new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }),
+      tasks: taskStates,
+      counters: counterValues,
+      customTasks: customTasksSnapshot,
+      summary: {
+        line: summaryLine,
+        tasksCompleted: tasksCompleted,
+        tasksTotal: tasksTotal,
+        notesDays: notesDayStr
+      },
+      reflection: '',
+      essay: essay
+    };
+  }
+
+  function renderPillarDetail(name, items, customTasks) {
+    var html = '<div class="submit-pillar">';
+    html += '<div class="submit-pillar-name">' + escapeHtml(name) + '</div>';
+    html += '<div class="submit-pillar-items">';
+    items.forEach(function(item) {
+      var cls = item.done ? 'item-done' : 'item-not-done';
+      var mark = item.done ? '\u2713' : '\u2717';
+      html += '<div class="' + cls + '">' + mark + ' ' + escapeHtml(item.label) + '</div>';
+    });
+    if (customTasks && customTasks.length) {
+      customTasks.forEach(function(t) {
+        var cls = t.done ? 'item-done' : 'item-not-done';
+        var mark = t.done ? '\u2713' : '\u2717';
+        html += '<div class="' + cls + '">' + mark + ' ' + escapeHtml(t.text) + '</div>';
+      });
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderSubmitPreview(snapshot) {
+    var html = '';
+    html += '<div class="submit-summary-banner">' + escapeHtml(snapshot.summary.line) + '</div>';
+
+    // Substack
+    html += renderPillarDetail('Substack', [
+      { label: 'Long-form essay published', done: snapshot.tasks['substack-essay'] },
+      { label: 'Notes: ' + snapshot.summary.notesDays, done: true },
+      { label: 'Comments on other Substacks: ' + snapshot.counters['substack-comments'] + '/5', done: snapshot.counters['substack-comments'] > 0 },
+      { label: 'Collaboration initiated', done: snapshot.tasks['substack-collab'] }
+    ], snapshot.customTasks['substack-weekly']);
+
+    // LinkedIn
+    html += renderPillarDetail('LinkedIn', [
+      { label: 'Posts this week: ' + snapshot.counters['linkedin-posts'] + '/2', done: snapshot.counters['linkedin-posts'] > 0 },
+      { label: 'Meaningful engagement', done: snapshot.tasks['linkedin-engagement'] }
+    ], snapshot.customTasks['linkedin-weekly']);
+
+    // Instagram
+    html += renderPillarDetail('Instagram', [
+      { label: 'Carousel created from essay', done: snapshot.tasks['ig-carousel'] },
+      { label: 'Stories posted', done: snapshot.tasks['ig-stories'] },
+      { label: 'Meaningful engagement', done: snapshot.tasks['ig-engagement'] }
+    ], snapshot.customTasks['ig-weekly']);
+
+    // Essay card
+    if (snapshot.essay) {
+      var stars = '';
+      for (var s = 0; s < 5; s++) stars += s < snapshot.essay.rating ? '\u2605' : '\u2606';
+      html += '<div class="submit-essay-card">';
+      html += '<div class="essay-card-title">' + escapeHtml(snapshot.essay.title) + '</div>';
+      if (snapshot.essay.subtitle) html += '<div class="essay-card-meta">' + escapeHtml(snapshot.essay.subtitle) + '</div>';
+      html += '<div class="essay-card-meta">' + stars + '</div>';
+      html += '</div>';
+    }
+
+    return html;
+  }
+
+  var submitWeekDialog = document.getElementById('submitWeekDialog');
+  var currentSnapshot = null;
+
+  document.getElementById('submitWeekBtn').addEventListener('click', function() {
+    currentSnapshot = buildWeekSnapshot();
+    document.getElementById('submitWeekPreview').innerHTML = renderSubmitPreview(currentSnapshot);
+    document.getElementById('submitReflection').value = '';
+    submitWeekDialog.classList.add('active');
+  });
+
+  document.getElementById('submitWeekCancel').addEventListener('click', function() {
+    submitWeekDialog.classList.remove('active');
+  });
+
+  submitWeekDialog.addEventListener('click', function(e) {
+    if (e.target === submitWeekDialog) submitWeekDialog.classList.remove('active');
+  });
+
+  document.getElementById('submitWeekConfirm').addEventListener('click', function() {
+    if (!currentSnapshot) return;
+
+    // Capture reflection
+    currentSnapshot.reflection = document.getElementById('submitReflection').value.trim();
+
+    // Save to progress log
+    data.progressLog.push(currentSnapshot);
+
+    // Reset weekly tasks
+    WEEKLY_TASKS.forEach(function(key) {
+      data.tasks[key] = false;
+      var el = document.querySelector('[data-task="' + key + '"]');
+      if (el) {
+        el.checked = false;
+        var row = el.closest('.task-row');
+        if (row) row.classList.remove('completed');
+      }
+    });
+
+    // Reset weekly counters
+    WEEKLY_COUNTERS.forEach(function(key) {
+      data.counters[key] = 0;
+      var display = document.querySelector('[data-display="' + key + '"]');
+      if (display) display.textContent = '0';
+    });
+
+    // Clear custom tasks in weekly sections
+    WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
+      data.customTasks[section] = [];
+      var container = document.getElementById('custom-' + section);
+      if (container) container.innerHTML = '';
+    });
+
+    // Close essay tracker panel and clear fields
+    var essayPanelEl = document.getElementById('essayTrackerPanel');
+    if (essayPanelEl) essayPanelEl.classList.remove('open');
+    document.getElementById('essayTitle').value = '';
+    document.getElementById('essaySubtitle').value = '';
+    currentEssayRating = 0;
+    updateStarDisplay(0);
+
+    save(data);
+    submitWeekDialog.classList.remove('active');
+    currentSnapshot = null;
+    showToast('Week submitted! Keep going.');
   });
 
   // ============ PROMPT BUTTONS ============
@@ -1987,208 +2197,143 @@ h3 {
     });
   });
 
-  // ============ ESSAY LOG MODAL ============
+  // ============ PROGRESS LOG MODAL ============
   function escapeHtml(str) {
     var div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
   }
 
-  function renderEssayLog() {
-    var container = document.getElementById('essayLogEntries');
-    var entries = data.essayLog || [];
+  function renderProgressLog() {
+    var container = document.getElementById('progressLogEntries');
+    var entries = data.progressLog || [];
     if (entries.length === 0) {
-      container.innerHTML = '<div class="essay-log-empty">No essays logged yet. Check off your essay and save one!</div>';
+      container.innerHTML = '<div class="progress-empty">No weeks submitted yet. Complete your first week and hit Submit!</div>';
       return;
     }
     var html = '';
     for (var i = entries.length - 1; i >= 0; i--) {
-      var e = entries[i];
-      var stars = '';
-      for (var s = 0; s < 5; s++) {
-        stars += s < e.rating ? '\u2605' : '\u2606';
+      var entry = entries[i];
+      html += '<div class="progress-entry" data-log-index="' + i + '">';
+
+      // Header row (clickable)
+      html += '<div class="progress-entry-header">';
+      html += '<div>';
+      html += '<div class="progress-entry-date">' + escapeHtml(entry.dateLabel) + '</div>';
+      html += '<div class="progress-entry-summary">' + escapeHtml(entry.summary.line) + '</div>';
+      html += '</div>';
+      html += '<span class="progress-entry-arrow">\u25B6</span>';
+      html += '</div>';
+
+      // Reflection
+      if (entry.reflection) {
+        html += '<div class="progress-entry-reflection">\u201C' + escapeHtml(entry.reflection) + '\u201D</div>';
       }
-      html += '<div class="essay-log-entry">';
-      html += '<div class="entry-title">' + escapeHtml(e.title) + '</div>';
-      if (e.subtitle) html += '<div class="entry-subtitle">' + escapeHtml(e.subtitle) + '</div>';
-      html += '<div class="entry-meta">' + stars + ' \u00B7 ' + e.date + '</div>';
+
+      // Essay
+      if (entry.essay) {
+        var stars = '';
+        for (var s = 0; s < 5; s++) stars += s < entry.essay.rating ? '\u2605' : '\u2606';
+        html += '<div class="progress-entry-essay">' + escapeHtml(entry.essay.title) + ' ' + stars + '</div>';
+      }
+
+      // Expandable detail
+      html += '<div class="progress-entry-detail">';
+      html += renderSubmitPreview(entry);
+      html += '</div>';
+
       html += '</div>';
     }
     container.innerHTML = html;
+
+    // Attach expand/collapse handlers
+    container.querySelectorAll('.progress-entry-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var entryEl = this.closest('.progress-entry');
+        entryEl.classList.toggle('expanded');
+      });
+    });
   }
 
-  document.getElementById('essayLogBtn').addEventListener('click', function() {
-    renderEssayLog();
-    document.getElementById('essayLogModal').classList.add('active');
+  document.getElementById('progressLogBtn').addEventListener('click', function() {
+    renderProgressLog();
+    document.getElementById('progressLogModal').classList.add('active');
   });
 
-  document.getElementById('essayLogClose').addEventListener('click', function() {
-    document.getElementById('essayLogModal').classList.remove('active');
+  document.getElementById('progressLogClose').addEventListener('click', function() {
+    document.getElementById('progressLogModal').classList.remove('active');
   });
 
-  document.getElementById('essayLogModal').addEventListener('click', function(e) {
+  document.getElementById('progressLogModal').addEventListener('click', function(e) {
     if (e.target === this) this.classList.remove('active');
   });
 
-  // ============ WEEKLY WINS ============
-  function renderWeeklyWins() {
-    var container = document.getElementById('winsHistory');
-    var wins = data.weeklyWins || [];
-    if (wins.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-    var html = '';
-    for (var i = wins.length - 1; i >= 0; i--) {
-      html += '<div class="win-entry">';
-      html += '<span class="win-date">' + wins[i].date + '</span> ';
-      html += escapeHtml(wins[i].text);
-      html += '</div>';
-    }
-    container.innerHTML = html;
-  }
+  // ============ SHARE ============
+  function checkMark(val) { return val ? '\u2705' : '\u2B1C'; }
 
-  document.getElementById('saveWinBtn').addEventListener('click', function() {
-    var input = document.getElementById('weeklyWinInput');
-    var text = input.value.trim();
-    if (!text) return;
-    var entry = {
-      text: text,
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-    };
-    data.weeklyWins.push(entry);
-    save(data);
-    input.value = '';
-    renderWeeklyWins();
-    showToast('Win saved!');
-  });
-
-  // ============ SHARE / COPY ============
-  function generateSummary() {
+  function generateShareText() {
     var lines = [];
-    lines.push('MOMENTUM GROWTH PLAN - Progress Update');
-    lines.push('Joanne | ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+    var date = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    lines.push('A LITTLE WOO \u2728 Weekly Check-In');
+    lines.push('Joanne | ' + date);
+    lines.push('');
+
+    // Quick summary line
+    var tasksCompleted = 0;
+    WEEKLY_TASKS.forEach(function(key) { if (data.tasks[key]) tasksCompleted++; });
+    WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
+      (data.customTasks[section] || []).forEach(function(t) { if (t.done) tasksCompleted++; });
+    });
+    var totalTasks = WEEKLY_TASKS.length;
+    WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
+      totalTasks += (data.customTasks[section] || []).length;
+    });
+    lines.push(tasksCompleted + '/' + totalTasks + ' weekly tasks \u00B7 ' + (data.counters['substack-comments'] || 0) + '/5 comments \u00B7 ' + (data.counters['linkedin-posts'] || 0) + '/2 posts');
     lines.push('');
 
     // Substack
-    lines.push('--- SUBSTACK (Weekly) ---');
+    lines.push('SUBSTACK');
     lines.push(checkMark(data.tasks['substack-essay']) + ' Long-form essay published');
     var notesDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
     var notesKeys = ['substack-notes-mon','substack-notes-tue','substack-notes-wed','substack-notes-thu','substack-notes-fri','substack-notes-sat','substack-notes-sun'];
-    var notesStr = notesDays.map(function(d, i) { return (data.tasks[notesKeys[i]] ? d : '_'); }).join(' ');
-    lines.push('  Notes: ' + notesStr);
-    lines.push('  Commented on other Substacks: ' + (data.counters['substack-comments'] || 0) + '/5');
+    var notesStr = notesDays.map(function(d, i) { return data.tasks[notesKeys[i]] ? d : '_'; }).join(' ');
+    lines.push('\u270D\uFE0F Notes: ' + notesStr);
+    lines.push('\u{1F4AC} Commented on other Substacks: ' + (data.counters['substack-comments'] || 0) + '/5');
     lines.push(checkMark(data.tasks['substack-collab']) + ' Collaboration initiated');
-    addCustomSummary(lines, 'substack-weekly');
+    (data.customTasks['substack-weekly'] || []).forEach(function(t) { lines.push(checkMark(t.done) + ' ' + t.text); });
     lines.push('');
 
     // LinkedIn
-    lines.push('--- LINKEDIN (Weekly) ---');
-    lines.push('  Posts this week: ' + (data.counters['linkedin-posts'] || 0) + '/2');
+    lines.push('LINKEDIN');
+    lines.push('\u{1F4DD} Posts this week: ' + (data.counters['linkedin-posts'] || 0) + '/2');
     lines.push(checkMark(data.tasks['linkedin-engagement']) + ' Meaningful engagement');
-    addCustomSummary(lines, 'linkedin-weekly');
+    (data.customTasks['linkedin-weekly'] || []).forEach(function(t) { lines.push(checkMark(t.done) + ' ' + t.text); });
     lines.push('');
 
     // Instagram
-    lines.push('--- INSTAGRAM (Weekly) ---');
+    lines.push('INSTAGRAM');
     lines.push(checkMark(data.tasks['ig-carousel']) + ' Carousel created from essay');
     lines.push(checkMark(data.tasks['ig-stories']) + ' Stories posted');
     lines.push(checkMark(data.tasks['ig-engagement']) + ' Meaningful engagement');
-    addCustomSummary(lines, 'ig-weekly');
+    (data.customTasks['ig-weekly'] || []).forEach(function(t) { lines.push(checkMark(t.done) + ' ' + t.text); });
     lines.push('');
 
-    // Landing Page
-    lines.push('--- LANDING PAGE ---');
-    lines.push(checkMark(data.milestones['lp-drafted']) + ' Landing page layout, design, and copy drafted');
-    lines.push(checkMark(data.milestones['lp-live']) + ' Landing page live');
-    lines.push(checkMark(data.milestones['lp-email-capture']) + ' Email capture set up');
-    addCustomSummary(lines, 'landing-page');
+    // Prompts
+    lines.push('\u2014\u2014\u2014');
     lines.push('');
-
-    // Lead Magnet
-    lines.push('--- LEAD MAGNET ---');
-    lines.push(checkMark(data.milestones['lm-topic']) + ' Topic chosen');
-    lines.push(checkMark(data.milestones['lm-draft']) + ' Draft complete');
-    lines.push(checkMark(data.milestones['lm-designed']) + ' Lead magnet designed');
-    addCustomSummary(lines, 'lead-magnet');
+    lines.push('\u{1F3C6} My win this week:');
+    lines.push('[Fill in here]');
     lines.push('');
-
-    // Outreach
-    lines.push('--- VISIBILITY & OUTREACH ---');
-    lines.push('Phase 1:');
-    lines.push(checkMark(data.milestones['outreach-calendar']) + ' Content calendar');
-    lines.push(checkMark(data.milestones['outreach-podcast-list']) + ' Collaboration list');
-    lines.push(checkMark(data.milestones['outreach-template']) + ' Outreach template');
-    lines.push(checkMark(data.milestones['outreach-first5']) + ' First 5 emails sent');
-    addCustomSummary(lines, 'outreach-p1');
-    lines.push('Phase 2:');
-    lines.push(checkMark(data.milestones['outreach-book-podcast']) + ' Book 1 podcast');
-    lines.push(checkMark(data.milestones['outreach-guest-post']) + ' Secure 1 guest post');
-    lines.push(checkMark(data.milestones['outreach-pitch3']) + ' Pitch 3+ outlets');
-    lines.push(checkMark(data.milestones['outreach-followup']) + ' Follow up');
-    addCustomSummary(lines, 'outreach-p2');
-    lines.push('');
-
-    // Book
-    lines.push('--- BOOK CLARITY ---');
-    lines.push(checkMark(data.milestones['book-thesis']) + ' Working thesis drafted');
-    lines.push(checkMark(data.milestones['book-chapters']) + ' Rough chapter list');
-    addCustomSummary(lines, 'book');
-    lines.push('');
-
-    // Stats
-    var hasAnyStats = false;
-    var statRows = [
-      ['Substack subscribers', 'sub-subscribers'],
-      ['Substack followers', 'sub-followers'],
-      ['Substack open rate %', 'sub-openrate'],
-      ['LinkedIn followers', 'li-followers'],
-      ['LinkedIn profile views', 'li-views'],
-      ['Instagram followers', 'ig-followers'],
-      ['Email list size', 'email-list']
-    ];
-    var statsLines = [];
-    statsLines.push('--- STATS ---');
-    statsLines.push('                         Begin   Mid    End');
-    statRows.forEach(function(row) {
-      var v1 = data.stats[row[1] + '-1'] || '-';
-      var v2 = data.stats[row[1] + '-2'] || '-';
-      var v3 = data.stats[row[1] + '-3'] || '-';
-      if (v1 !== '-' || v2 !== '-' || v3 !== '-') hasAnyStats = true;
-      var label = (row[0] + '                     ').substring(0, 25);
-      statsLines.push(label + v1 + '      ' + v2 + '      ' + v3);
-    });
-    if (hasAnyStats) {
-      lines = lines.concat(statsLines);
-      lines.push('');
-    }
-
-    lines.push('---');
-    lines.push('Sent from A Little Woo');
+    lines.push('\u{1F9F1} One thing I\'m stuck on or struggling with:');
+    lines.push('[Fill in here]');
 
     return lines.join('\n');
   }
 
-  function checkMark(val) { return val ? '[x]' : '[ ]'; }
-
-  function addCustomSummary(lines, section) {
-    var customs = data.customTasks[section] || [];
-    customs.forEach(function(t) {
-      lines.push(checkMark(t.done) + ' ' + t.text);
-    });
-  }
-
   document.getElementById('shareBtn').addEventListener('click', function() {
-    var summary = generateSummary();
-    var subject = encodeURIComponent('Momentum Growth Plan Update - ' + new Date().toLocaleDateString());
-    var body = encodeURIComponent(summary);
-    var mailto = 'mailto:carly@momentumgrowthplan.com?subject=' + subject + '&body=' + body;
-    window.location.href = mailto;
-  });
-
-  document.getElementById('copyBtn').addEventListener('click', function() {
-    var summary = generateSummary();
-    copyToClipboard(summary);
+    var text = generateShareText();
+    copyToClipboard(text);
+    showToast('Copied! Paste into Slack or email.');
   });
 
   function fallbackCopy(text) {
