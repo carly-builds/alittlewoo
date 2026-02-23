@@ -1103,6 +1103,216 @@ h3 {
   padding: 24px 0;
   line-height: 1.6;
 }
+
+/* ============ CHAT PANEL ============ */
+.chat-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  opacity: 0;
+  padding: 0;
+}
+.chat-panel.open {
+  max-height: 2000px;
+  opacity: 1;
+  padding: 14px 0 4px;
+}
+.chat-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+.chat-close-btn {
+  background: none;
+  border: none;
+  font-size: 0.82rem;
+  color: var(--dark-sage);
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+.chat-close-btn:hover {
+  opacity: 1;
+  background: rgba(189,209,206,0.2);
+}
+.chat-messages {
+  margin-bottom: 12px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.chat-msg {
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.chat-msg-user {
+  background: rgba(189,209,206,0.18);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.chat-msg-user .chat-msg-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dark-sage);
+  opacity: 0.5;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.chat-msg-assistant {
+  background: rgba(222,217,167,0.15);
+  border: 1px solid rgba(222,217,167,0.3);
+  border-radius: 10px;
+  padding: 10px 14px;
+  position: relative;
+}
+.chat-msg-assistant .chat-msg-content p {
+  margin-bottom: 8px;
+}
+.chat-msg-assistant .chat-msg-content p:last-child {
+  margin-bottom: 0;
+}
+.chat-msg-assistant .chat-msg-content strong {
+  font-weight: 600;
+}
+.chat-msg-assistant .chat-msg-content em {
+  font-style: italic;
+}
+.chat-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: 1px solid rgba(189,209,206,0.5);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--dark-sage);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+  margin-top: 8px;
+}
+.chat-copy-btn:hover {
+  opacity: 1;
+  background: rgba(189,209,206,0.15);
+}
+.chat-essay-input {
+  width: 100%;
+  border: 1.5px solid rgba(189,209,206,0.6);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--warm-cream);
+  color: var(--near-black);
+  outline: none;
+  transition: border-color var(--transition);
+  resize: vertical;
+  min-height: 100px;
+}
+.chat-essay-input:focus {
+  border-color: var(--dark-sage);
+}
+.chat-followup-input {
+  width: 100%;
+  border: 1.5px solid rgba(189,209,206,0.6);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--warm-cream);
+  color: var(--near-black);
+  outline: none;
+  transition: border-color var(--transition);
+  resize: none;
+  min-height: 42px;
+}
+.chat-followup-input:focus {
+  border-color: var(--dark-sage);
+}
+.chat-input-row {
+  margin-top: 8px;
+}
+.chat-send-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--dark-sage);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 8px;
+}
+.chat-send-btn:hover {
+  opacity: 0.9;
+}
+.chat-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.chat-loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--dark-sage);
+  opacity: 0.6;
+  padding: 8px 0;
+}
+.chat-loading-dots::after {
+  content: '';
+  animation: chatDots 1.2s steps(4, end) infinite;
+}
+@keyframes chatDots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+  100% { content: ''; }
+}
+.chat-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--dark-sage);
+  margin-left: 2px;
+  animation: chatBlink 0.7s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes chatBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.chat-error {
+  font-size: 0.85rem;
+  color: #c0392b;
+  padding: 8px 0;
+}
+.prompt-btn.active {
+  background: var(--dark-sage);
+  color: var(--white);
+  border-color: var(--dark-sage);
+}
+.prompt-btn.active::before {
+  content: '\2715';
+}
+@media (max-width: 600px) {
+  .chat-messages { max-height: 400px; }
+  .chat-essay-input { min-height: 80px; }
+}
 </style>
 </head>
 <body>
@@ -1228,6 +1438,14 @@ h3 {
     </div>
 
     <button type="button" class="prompt-btn" data-prompt="substack-notes">Generate Note Ideas</button>
+    <div class="chat-panel" data-chat="substack-notes">
+      <div class="chat-header"><button type="button" class="chat-close-btn">Close chat</button></div>
+      <div class="chat-messages"></div>
+      <div class="chat-input-row">
+        <textarea class="chat-essay-input" placeholder="Paste your essay here..."></textarea>
+        <button type="button" class="chat-send-btn">Send</button>
+      </div>
+    </div>
   </div>
 
   <!-- ============ PILLAR 2: LINKEDIN ============ -->
@@ -1259,6 +1477,14 @@ h3 {
     </div>
 
     <button type="button" class="prompt-btn" data-prompt="linkedin-posts">Generate Post Ideas</button>
+    <div class="chat-panel" data-chat="linkedin-posts">
+      <div class="chat-header"><button type="button" class="chat-close-btn">Close chat</button></div>
+      <div class="chat-messages"></div>
+      <div class="chat-input-row">
+        <textarea class="chat-essay-input" placeholder="Paste your essay here..."></textarea>
+        <button type="button" class="chat-send-btn">Send</button>
+      </div>
+    </div>
   </div>
 
   <!-- ============ PILLAR 3: INSTAGRAM ============ -->
@@ -1294,6 +1520,14 @@ h3 {
     </div>
 
     <button type="button" class="prompt-btn" data-prompt="ig-carousel">Generate Carousel Ideas</button>
+    <div class="chat-panel" data-chat="ig-carousel">
+      <div class="chat-header"><button type="button" class="chat-close-btn">Close chat</button></div>
+      <div class="chat-messages"></div>
+      <div class="chat-input-row">
+        <textarea class="chat-essay-input" placeholder="Paste your essay here..."></textarea>
+        <button type="button" class="chat-send-btn">Send</button>
+      </div>
+    </div>
   </div>
 
   <!-- ============ WEEKLY ACTIONS ============ -->
@@ -1439,6 +1673,14 @@ h3 {
     </div>
 
     <button type="button" class="prompt-btn" data-prompt="lead-magnet">Generate Lead Magnet Ideas</button>
+    <div class="chat-panel" data-chat="lead-magnet">
+      <div class="chat-header"><button type="button" class="chat-close-btn">Close chat</button></div>
+      <div class="chat-messages"></div>
+      <div class="chat-input-row">
+        <textarea class="chat-essay-input" placeholder="Paste your essay here..."></textarea>
+        <button type="button" class="chat-send-btn">Send</button>
+      </div>
+    </div>
 
     <div id="custom-lead-magnet"></div>
     <div class="add-task-row">
@@ -2136,16 +2378,23 @@ h3 {
     showToast('Week submitted! Keep going.');
   });
 
-  // ============ PROMPT BUTTONS ============
-  const PROMPTS = {
-    'substack-notes': 'You are a Substack growth strategist helping me repurpose my long-form essays into Substack Notes. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**My Notes style:**\n- lowercase, conversational\n- parentheticals for context (like this)\n- explores vs. teaches\n- genuine questions, not rhetorical ones\n- link to recent essays or threads when relevant\n\n**What I need from you:**\nFor the essay I paste below, please give me five ideas for Substack Notes related to the essay.\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]',
-
-    'linkedin-posts': 'You are a LinkedIn content strategist helping me repurpose my Substack essays into LinkedIn posts. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**My LinkedIn strategy:**\n- Repost every essay with a compelling excerpt\n- Pull 1-2 standalone "spicy takes" from each essay as text-only LinkedIn posts\n- Voice: lowercase, conversational, vulnerable but grounded. Not preachy. Not salesy. Exploring, not teaching.\n- Don\'t shy away from the woo content. My audience wants the middle ground.\n\n**What I need from you:**\nFor the essay I paste below, please give me:\n1. Three ideas for interesting LinkedIn posts related to the essay\n2. Once I pick one, create an outline of that post with my voice and writing style in mind\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]',
-
-    'ig-carousel': 'You are an Instagram content strategist helping me repurpose my Substack essays into Instagram content. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**My Instagram strategy:**\n- Turn essays into carousels (5-8 slides, one idea per slide, pulled directly from the essay)\n- Post 1-2 carousels per essay\n- Stories: share when essay drops, behind-the-scenes, quick thoughts\n- Voice: lowercase, conversational, vulnerable but grounded. Not preachy. Not salesy.\n\n**What I need from you:**\nFor the essay I paste below, please give me:\n1. Three ideas for Instagram carousel posts related to the essay\n2. Once I pick one, pull out the most interesting, value-packed lines from the essay that would work as individual carousel slides. Use your knowledge of what performs well on Instagram carousels (strong hooks on slide 1, one idea per slide, conversational tone, ending with a clear CTA or takeaway).\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]',
-
-    'lead-magnet': 'You are a content strategist helping me create lead magnets from my Substack essays. Here\'s what you need to know about my brand:\n\n**About me:** I\'m Joanne, and I write "A Little Woo" on Substack. I write about the space between mainstream medicine and alternative wellness. I\'m a mom, a former healthcare insider, and someone who believes there\'s a middle ground between blindly trusting the system and rejecting it entirely.\n\n**What is a lead magnet?** A free, valuable resource people download in exchange for their email address. It should be practical, shareable, and connected to my content.\n\n**What I need from you:**\nFor the essay I paste below, please give me three ideas for a lead magnet I could create from this topic. For each idea, tell me the format (checklist, guide, worksheet, etc.), a working title, and a one-sentence description of what it would include.\n\nHere is my essay:\n[PASTE YOUR ESSAY HERE]'
+  // ============ PROMPT BUTTONS & INLINE CHAT ============
+  var BUTTON_LABELS = {
+    'substack-notes': 'Generate Note Ideas',
+    'linkedin-posts': 'Generate Post Ideas',
+    'ig-carousel': 'Generate Carousel Ideas',
+    'lead-magnet': 'Generate Lead Magnet Ideas'
   };
+
+  // Chat state per panel (in memory, not localStorage)
+  var chatStates = {};
+
+  function getChatState(promptKey) {
+    if (!chatStates[promptKey]) {
+      chatStates[promptKey] = { messages: [], streaming: false };
+    }
+    return chatStates[promptKey];
+  }
 
   function copyToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -2159,12 +2408,269 @@ h3 {
     }
   }
 
+  // Lightweight markdown: bold, italic, line breaks, paragraphs
+  function simpleMarkdown(text) {
+    // Split into paragraphs on double newline
+    var paragraphs = text.split(/\n{2,}/);
+    return paragraphs.map(function(para) {
+      var safe = escapeHtml(para.trim());
+      // Bold **text**
+      safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // Italic *text*
+      safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      // Single newlines to <br>
+      safe = safe.replace(/\n/g, '<br>');
+      return '<p>' + safe + '</p>';
+    }).join('');
+  }
+
+  function truncateEssay(text, maxLen) {
+    if (text.length <= maxLen) return text;
+    return text.substring(0, maxLen) + '... [essay continues]';
+  }
+
+  function renderUserMessage(panel, text) {
+    var container = panel.querySelector('.chat-messages');
+    var div = document.createElement('div');
+    div.className = 'chat-msg chat-msg-user';
+    div.innerHTML = '<div class="chat-msg-label">You</div><div class="chat-msg-content">' + escapeHtml(truncateEssay(text, 300)) + '</div>';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function createAssistantMessageEl(panel) {
+    var container = panel.querySelector('.chat-messages');
+    var div = document.createElement('div');
+    div.className = 'chat-msg chat-msg-assistant';
+    div.innerHTML = '<div class="chat-msg-content"><span class="chat-cursor"></span></div>';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return div;
+  }
+
+  function updateAssistantMessage(el, text) {
+    var content = el.querySelector('.chat-msg-content');
+    content.innerHTML = simpleMarkdown(text) + '<span class="chat-cursor"></span>';
+    var container = el.closest('.chat-messages');
+    if (container) container.scrollTop = container.scrollHeight;
+  }
+
+  function finalizeAssistantMessage(el, text) {
+    var content = el.querySelector('.chat-msg-content');
+    content.innerHTML = simpleMarkdown(text);
+    // Add copy button
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'chat-copy-btn';
+    copyBtn.textContent = 'Copy';
+    copyBtn.addEventListener('click', function() {
+      copyToClipboard(text);
+    });
+    el.appendChild(copyBtn);
+    var container = el.closest('.chat-messages');
+    if (container) container.scrollTop = container.scrollHeight;
+  }
+
+  function showChatError(panel, msg) {
+    var container = panel.querySelector('.chat-messages');
+    var div = document.createElement('div');
+    div.className = 'chat-error';
+    div.textContent = msg || 'Something went wrong. Try again.';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function switchToFollowUp(panel) {
+    var inputRow = panel.querySelector('.chat-input-row');
+    inputRow.innerHTML = '';
+    var input = document.createElement('textarea');
+    input.className = 'chat-followup-input';
+    input.placeholder = 'Ask a follow-up (e.g. "try a different angle", "write option 2 in full")...';
+    input.rows = 1;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'chat-send-btn';
+    btn.textContent = 'Send';
+    inputRow.appendChild(input);
+    inputRow.appendChild(btn);
+
+    var promptKey = panel.getAttribute('data-chat');
+    btn.addEventListener('click', function() {
+      var text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      sendChatMessage(promptKey, text);
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  }
+
+  async function sendChatMessage(promptKey, userText) {
+    var panel = document.querySelector('.chat-panel[data-chat="' + promptKey + '"]');
+    var state = getChatState(promptKey);
+    if (state.streaming) return;
+
+    // Add user message to state
+    state.messages.push({ role: 'user', content: userText });
+
+    // Render user message
+    renderUserMessage(panel, userText);
+
+    // Disable send button
+    var sendBtn = panel.querySelector('.chat-send-btn');
+    if (sendBtn) sendBtn.disabled = true;
+    state.streaming = true;
+
+    // Create assistant message element
+    var assistantEl = createAssistantMessageEl(panel);
+    var fullText = '';
+
+    try {
+      var response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          promptKey: promptKey,
+          messages: state.messages
+        })
+      });
+
+      if (!response.ok) {
+        var errData;
+        try { errData = await response.json(); } catch(e) { errData = {}; }
+        throw new Error(errData.error || 'Chat unavailable right now.');
+      }
+
+      // Parse SSE stream
+      var reader = response.body.getReader();
+      var decoder = new TextDecoder();
+      var buffer = '';
+
+      while (true) {
+        var result = await reader.read();
+        if (result.done) break;
+
+        buffer += decoder.decode(result.value, { stream: true });
+        var lines = buffer.split('\n');
+        // Keep the last potentially incomplete line in the buffer
+        buffer = lines.pop() || '';
+
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (!line.startsWith('data: ')) continue;
+          var jsonStr = line.substring(6);
+          if (jsonStr === '[DONE]') continue;
+
+          try {
+            var event = JSON.parse(jsonStr);
+            if (event.type === 'content_block_delta' && event.delta && event.delta.type === 'text_delta') {
+              fullText += event.delta.text;
+              updateAssistantMessage(assistantEl, fullText);
+            }
+          } catch (parseErr) {
+            // Skip unparseable lines
+          }
+        }
+      }
+
+      // Process any remaining buffer
+      if (buffer.trim().startsWith('data: ')) {
+        var lastJson = buffer.trim().substring(6);
+        if (lastJson !== '[DONE]') {
+          try {
+            var lastEvent = JSON.parse(lastJson);
+            if (lastEvent.type === 'content_block_delta' && lastEvent.delta && lastEvent.delta.type === 'text_delta') {
+              fullText += lastEvent.delta.text;
+            }
+          } catch(e) {}
+        }
+      }
+
+      if (fullText) {
+        state.messages.push({ role: 'assistant', content: fullText });
+        finalizeAssistantMessage(assistantEl, fullText);
+      } else {
+        assistantEl.remove();
+        showChatError(panel, 'No response received. Try again.');
+        // Remove the user message we added since there's no response
+        state.messages.pop();
+      }
+    } catch (err) {
+      assistantEl.remove();
+      showChatError(panel, err.message || 'Something went wrong. Try again.');
+      // Remove the user message since the request failed
+      state.messages.pop();
+    }
+
+    state.streaming = false;
+    if (sendBtn) sendBtn.disabled = false;
+
+    // After first exchange, switch to follow-up input
+    if (state.messages.length >= 2 && panel.querySelector('.chat-essay-input')) {
+      switchToFollowUp(panel);
+    }
+  }
+
+  // Toggle chat panel on prompt button click
   document.querySelectorAll('.prompt-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var key = this.getAttribute('data-prompt');
-      var text = PROMPTS[key];
-      if (text) {
-        copyToClipboard(text);
+      var panel = document.querySelector('.chat-panel[data-chat="' + key + '"]');
+      if (!panel) return;
+
+      var isOpen = panel.classList.contains('open');
+      if (isOpen) {
+        panel.classList.remove('open');
+        this.classList.remove('active');
+        this.textContent = BUTTON_LABELS[key];
+      } else {
+        panel.classList.add('open');
+        this.classList.add('active');
+        this.textContent = 'Close Chat';
+        // Focus the textarea
+        var textarea = panel.querySelector('.chat-essay-input') || panel.querySelector('.chat-followup-input');
+        if (textarea) setTimeout(function() { textarea.focus(); }, 300);
+      }
+    });
+  });
+
+  // Send button handlers (initial essay send)
+  document.querySelectorAll('.chat-panel').forEach(function(panel) {
+    var sendBtn = panel.querySelector('.chat-send-btn');
+    var textarea = panel.querySelector('.chat-essay-input');
+    var promptKey = panel.getAttribute('data-chat');
+
+    if (sendBtn && textarea) {
+      sendBtn.addEventListener('click', function() {
+        var text = textarea.value.trim();
+        if (!text) return;
+        textarea.value = '';
+        sendChatMessage(promptKey, text);
+      });
+      textarea.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          sendBtn.click();
+        }
+      });
+    }
+  });
+
+  // Close button handlers
+  document.querySelectorAll('.chat-close-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var panel = this.closest('.chat-panel');
+      if (!panel) return;
+      var key = panel.getAttribute('data-chat');
+      panel.classList.remove('open');
+      var promptBtn = document.querySelector('.prompt-btn[data-prompt="' + key + '"]');
+      if (promptBtn) {
+        promptBtn.classList.remove('active');
+        promptBtn.textContent = BUTTON_LABELS[key];
       }
     });
   });
