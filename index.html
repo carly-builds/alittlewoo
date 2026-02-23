@@ -716,9 +716,10 @@ h3 {
   .day-check input[type="checkbox"]:checked::after { left: 9px; top: 5px; width: 8px; height: 12px; }
 
   .btn-primary, .btn-secondary { max-width: 100%; }
-  .ecosystem-visual { gap: 4px 0; }
-  .eco-node { padding: 6px 10px; font-size: 0.72rem; }
-  .eco-arrow { padding: 0 3px; font-size: 0.8rem; }
+  .ecosystem-circle { width: 240px; height: 240px; }
+  .eco-node { padding: 5px 10px; font-size: 0.68rem; }
+  .card-row { grid-template-columns: 1fr; gap: 0; }
+  .card-row > .card { margin-bottom: 20px; }
 }
 
 /* ============ PROMPT BUTTONS ============ */
@@ -831,38 +832,56 @@ h3 {
 }
 
 /* ============ ECOSYSTEM VISUAL ============ */
-.ecosystem-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px 0;
-  padding: 8px 0;
+.ecosystem-circle {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 12px auto 8px;
 }
 .eco-node {
-  background: rgba(189,209,206,0.25);
+  position: absolute;
+  background: var(--white);
   border: 1.5px solid var(--dusty-teal);
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-size: 0.78rem;
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--dark-sage);
   text-align: center;
   white-space: nowrap;
+  z-index: 2;
 }
-.eco-arrow {
-  font-size: 0.9rem;
-  color: var(--dusty-teal);
-  padding: 0 6px;
-  font-weight: 600;
+.eco-node:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.eco-node:nth-child(2) { top: 22%; right: 0; }
+.eco-node:nth-child(3) { top: 58%; right: 2%; }
+.eco-node:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
+.eco-node:nth-child(5) { top: 58%; left: 2%; }
+.eco-node:nth-child(6) { top: 22%; left: 0; }
+.eco-ring {
+  position: absolute;
+  inset: 24px;
+  border: 1.5px dashed rgba(189,209,206,0.5);
+  border-radius: 50%;
 }
-.eco-loop-arrow {
-  width: 100%;
-  text-align: center;
-  font-size: 0.8rem;
+.eco-center-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
   color: var(--dusty-teal);
-  margin-top: 8px;
-  font-weight: 500;
+  opacity: 0.5;
+}
+
+/* ============ SIDE-BY-SIDE CARDS ============ */
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.card-row > .card {
+  margin-bottom: 0;
 }
 
 /* ============ STATS LOCK ============ */
@@ -1301,6 +1320,24 @@ h3 {
   color: #c0392b;
   padding: 8px 0;
 }
+.progress-entry-delete {
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  color: var(--dark-sage);
+  opacity: 0.35;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+.progress-entry-delete:hover {
+  opacity: 1;
+  color: #c0392b;
+  background: rgba(192,57,43,0.08);
+}
 .prompt-btn.active {
   background: var(--dark-sage);
   color: var(--white);
@@ -1353,18 +1390,16 @@ h3 {
   <div class="card" style="text-align: center;">
     <h2 style="margin-bottom: 4px;">The Ecosystem</h2>
     <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 16px;">Every piece feeds the next. Here's how it all connects.</p>
-    <div class="ecosystem-visual">
+    <div class="ecosystem-circle">
+      <div class="eco-ring"></div>
+      <div class="eco-center-arrow">&#8635;</div>
       <div class="eco-node">Essay</div>
-      <span class="eco-arrow">&rarr;</span>
-      <div class="eco-node">Notes + LinkedIn + IG</div>
-      <span class="eco-arrow">&rarr;</span>
+      <div class="eco-node">Notes</div>
+      <div class="eco-node">LinkedIn + IG</div>
       <div class="eco-node">Landing Page</div>
-      <span class="eco-arrow">&rarr;</span>
       <div class="eco-node">Email List</div>
-      <span class="eco-arrow">&rarr;</span>
       <div class="eco-node">Substack</div>
     </div>
-    <div class="eco-loop-arrow">&#8635; and the cycle continues</div>
   </div>
 
   <!-- ============ PILLAR 1: SUBSTACK ============ -->
@@ -1613,6 +1648,9 @@ h3 {
     </div>
   </div>
 
+  <!-- ============ PILLARS 4 & 5: SIDE BY SIDE ============ -->
+  <div class="card-row">
+
   <!-- ============ PILLAR 4: LANDING PAGE ============ -->
   <div class="card">
     <div class="pillar-label">Pillar 4</div>
@@ -1688,6 +1726,8 @@ h3 {
       <button class="add-task-btn" data-section="lead-magnet">Add</button>
     </div>
   </div>
+
+  </div><!-- /card-row -->
 
   <!-- ============ VISIBILITY & OUTREACH ============ -->
   <div class="card">
@@ -2746,6 +2786,7 @@ h3 {
       // Expandable detail
       html += '<div class="progress-entry-detail">';
       html += renderSubmitPreview(entry);
+      html += '<div style="text-align:right; margin-top: 10px;"><button type="button" class="progress-entry-delete" data-delete-index="' + i + '">Delete this week</button></div>';
       html += '</div>';
 
       html += '</div>';
@@ -2757,6 +2798,19 @@ h3 {
       header.addEventListener('click', function() {
         var entryEl = this.closest('.progress-entry');
         entryEl.classList.toggle('expanded');
+      });
+    });
+
+    // Attach delete handlers
+    container.querySelectorAll('.progress-entry-delete').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var idx = parseInt(this.getAttribute('data-delete-index'));
+        if (confirm('Delete this submitted week? This can\u0027t be undone.')) {
+          data.progressLog.splice(idx, 1);
+          save(data);
+          renderProgressLog();
+        }
       });
     });
   }
