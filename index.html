@@ -755,8 +755,10 @@ h3 {
   .day-check input[type="checkbox"]:checked::after { left: 9px; top: 5px; width: 8px; height: 12px; }
 
   .btn-primary, .btn-secondary { max-width: 100%; }
-  .ecosystem-circle { width: 240px; height: 240px; }
-  .eco-node { padding: 5px 10px; font-size: 0.68rem; }
+  .ecosystem-circle { width: 260px; height: 260px; }
+  .eco-node { padding: 5px 10px; font-size: 0.7rem; }
+  .eco-node:nth-child(2) { right: -2px; }
+  .eco-node:nth-child(5) { left: -8px; }
   .card-row { grid-template-columns: 1fr; gap: 0; }
   .card-row > .card { margin-bottom: 20px; }
 }
@@ -873,9 +875,15 @@ h3 {
 /* ============ ECOSYSTEM VISUAL ============ */
 .ecosystem-circle {
   position: relative;
-  width: 280px;
-  height: 280px;
-  margin: 12px auto 8px;
+  width: 300px;
+  height: 300px;
+  margin: 16px auto 8px;
+}
+.eco-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 .eco-node {
   position: absolute;
@@ -883,34 +891,19 @@ h3 {
   border: 1.5px solid var(--dusty-teal);
   border-radius: 20px;
   padding: 7px 14px;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--dark-sage);
   text-align: center;
   white-space: nowrap;
   z-index: 2;
 }
-.eco-node:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
-.eco-node:nth-child(2) { top: 22%; right: 0; }
-.eco-node:nth-child(3) { top: 58%; right: 2%; }
-.eco-node:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
-.eco-node:nth-child(5) { top: 58%; left: 2%; }
-.eco-node:nth-child(6) { top: 22%; left: 0; }
-.eco-ring {
-  position: absolute;
-  inset: 24px;
-  border: 1.5px dashed rgba(189,209,206,0.5);
-  border-radius: 50%;
-}
-.eco-center-arrow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4rem;
-  color: var(--dusty-teal);
-  opacity: 0.5;
-}
+/* 5 nodes clockwise from top: Essay, Notes, LinkedIn, Instagram, Landing Page */
+.eco-node:nth-child(1) { top: 2px; left: 50%; transform: translateX(-50%); }
+.eco-node:nth-child(2) { top: 26%; right: -6px; }
+.eco-node:nth-child(3) { bottom: 10%; right: 2px; }
+.eco-node:nth-child(4) { bottom: 10%; left: 2px; }
+.eco-node:nth-child(5) { top: 26%; left: -14px; }
 
 /* ============ SIDE-BY-SIDE CARDS ============ */
 .card-row {
@@ -1430,14 +1423,29 @@ h3 {
     <h2 style="margin-bottom: 4px;">The Ecosystem</h2>
     <p style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 16px;">Every piece feeds the next. Here's how it all connects.</p>
     <div class="ecosystem-circle">
-      <div class="eco-ring"></div>
-      <div class="eco-center-arrow">&#8635;</div>
+      <svg class="eco-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 1 1 L 7 4 L 1 7" fill="none" stroke="#bdd1ce" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <!-- Curved arrows between nodes (clockwise): Essay→Notes→LinkedIn→Instagram→Landing Page→Essay -->
+        <!-- Essay (top center) → Notes (right upper) -->
+        <path d="M 178 42 Q 230 50, 248 88" stroke="#bdd1ce" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+        <!-- Notes (right upper) → LinkedIn (right lower) -->
+        <path d="M 262 125 Q 278 175, 260 218" stroke="#bdd1ce" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+        <!-- LinkedIn (right lower) → Instagram (left lower) -->
+        <path d="M 210 268 Q 150 300, 90 268" stroke="#bdd1ce" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+        <!-- Instagram (left lower) → Landing Page (left upper) -->
+        <path d="M 38 218 Q 18 175, 34 125" stroke="#bdd1ce" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+        <!-- Landing Page (left upper) → Essay (top center) -->
+        <path d="M 56 88 Q 72 50, 122 42" stroke="#bdd1ce" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+      </svg>
       <div class="eco-node">Essay</div>
       <div class="eco-node">Notes</div>
-      <div class="eco-node">LinkedIn + IG</div>
+      <div class="eco-node">LinkedIn</div>
+      <div class="eco-node">Instagram</div>
       <div class="eco-node">Landing Page</div>
-      <div class="eco-node">Email List</div>
-      <div class="eco-node">Substack</div>
     </div>
   </div>
 
