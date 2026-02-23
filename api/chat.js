@@ -110,7 +110,7 @@ When the user pastes an essay, give three ideas for a lead magnet from this topi
     if (!anthropicRes.ok) {
       const errText = await anthropicRes.text();
       console.error('Anthropic API error:', anthropicRes.status, errText);
-      res.status(502).json({ error: 'Anthropic ' + anthropicRes.status + ': ' + errText.substring(0, 200) });
+      res.status(502).json({ error: 'Chat unavailable right now.' });
       return;
     }
 
