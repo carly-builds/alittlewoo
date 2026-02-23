@@ -45,6 +45,11 @@ body {
   box-shadow: var(--card-shadow);
   padding: 28px 24px;
   margin-bottom: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 20px rgba(52,73,61,0.1);
+  transform: translateY(-2px);
 }
 
 /* ============ TYPOGRAPHY ============ */
@@ -79,20 +84,37 @@ h3 {
   color: var(--dark-sage);
   opacity: 0.8;
   margin-top: 4px;
+  position: relative;
 }
 
 /* ============ HEADER ============ */
 .header-card {
   text-align: center;
-  padding: 36px 24px 28px;
+  padding: 40px 24px 28px;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(222,217,167,0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(189,209,206,0.25) 0%, transparent 50%),
+    var(--white);
+  position: relative;
+  overflow: hidden;
 }
-
-.header-card h1 { margin-bottom: 2px; }
+.header-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.header-card h1 {
+  margin-bottom: 2px;
+  position: relative;
+}
 
 /* ============ TIMELINE ============ */
 .timeline-section {
   margin-top: 20px;
   text-align: left;
+  position: relative;
 }
 
 .timeline-label-row {
@@ -188,6 +210,13 @@ h3 {
 .task-row input[type="checkbox"]:checked {
   background: var(--dark-sage);
   border-color: var(--dark-sage);
+  animation: checkPop 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes checkPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); box-shadow: 0 0 0 4px rgba(222,217,167,0.4); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(222,217,167,0); }
 }
 
 .task-row input[type="checkbox"]:checked::after {
@@ -200,6 +229,12 @@ h3 {
   border: solid var(--white);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+  animation: checkDraw 0.2s ease-out 0.1s both;
+}
+
+@keyframes checkDraw {
+  0% { opacity: 0; transform: rotate(45deg) scale(0); }
+  100% { opacity: 1; transform: rotate(45deg) scale(1); }
 }
 
 .task-row.completed label span {
@@ -245,6 +280,7 @@ h3 {
 .day-check input[type="checkbox"]:checked {
   background: var(--dark-sage);
   border-color: var(--dark-sage);
+  animation: checkPop 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
 .day-check input[type="checkbox"]:checked::after {
@@ -699,6 +735,9 @@ h3 {
   color: var(--dusty-teal);
   font-weight: 700;
   margin-bottom: 4px;
+  display: inline-block;
+  padding-bottom: 3px;
+  border-bottom: 2px solid rgba(222,217,167,0.5);
 }
 
 /* ============ RESPONSIVE ============ */
