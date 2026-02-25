@@ -1513,6 +1513,14 @@ h3 {
       </label>
     </div>
 
+    <div class="essay-tracker-panel" id="collabTrackerPanel">
+      <div class="tracker-field">
+        <label for="collabNote">Who did you reach out to?</label>
+        <input type="text" id="collabNote" placeholder="Name, publication, or topic">
+      </div>
+      <button type="button" class="essay-submit-btn" id="collabSubmitBtn">Save to Collab Log</button>
+    </div>
+
     <div id="custom-substack-weekly"></div>
     <div class="add-task-row">
       <input type="text" class="add-task-input" placeholder="+ Add task" data-section="substack-weekly" maxlength="120">
@@ -1635,9 +1643,9 @@ h3 {
           <thead>
             <tr>
               <th style="text-align:left; min-width: 140px;"></th>
-              <th>Beginning<br><span style="font-weight:400; font-size:0.65rem;">Month 1</span></th>
-              <th>Midpoint<br><span style="font-weight:400; font-size:0.65rem;">Month 3</span></th>
-              <th>End<br><span style="font-weight:400; font-size:0.65rem;">Month 6</span></th>
+              <th><input type="text" class="stats-input" data-stat="col-label-1" placeholder="e.g. Jan 21" style="text-align:center; font-weight:600; font-size:0.75rem; text-transform:uppercase;"></th>
+              <th><input type="text" class="stats-input" data-stat="col-label-2" placeholder="e.g. Mar 21" style="text-align:center; font-weight:600; font-size:0.75rem; text-transform:uppercase;"></th>
+              <th><input type="text" class="stats-input" data-stat="col-label-3" placeholder="e.g. Jul 21" style="text-align:center; font-weight:600; font-size:0.75rem; text-transform:uppercase;"></th>
             </tr>
           </thead>
           <tbody>
@@ -1666,7 +1674,7 @@ h3 {
               <td><input type="text" class="stats-input" data-stat="li-followers-3" inputmode="numeric"></td>
             </tr>
             <tr>
-              <td>LinkedIn profile views</td>
+              <td>LinkedIn profile views (90 days)</td>
               <td><input type="text" class="stats-input" data-stat="li-views-1" inputmode="numeric"></td>
               <td><input type="text" class="stats-input" data-stat="li-views-2" inputmode="numeric"></td>
               <td><input type="text" class="stats-input" data-stat="li-views-3" inputmode="numeric"></td>
@@ -1676,6 +1684,12 @@ h3 {
               <td><input type="text" class="stats-input" data-stat="ig-followers-1" inputmode="numeric"></td>
               <td><input type="text" class="stats-input" data-stat="ig-followers-2" inputmode="numeric"></td>
               <td><input type="text" class="stats-input" data-stat="ig-followers-3" inputmode="numeric"></td>
+            </tr>
+            <tr>
+              <td>Instagram views (90 days)</td>
+              <td><input type="text" class="stats-input" data-stat="ig-views-1" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="ig-views-2" inputmode="numeric"></td>
+              <td><input type="text" class="stats-input" data-stat="ig-views-3" inputmode="numeric"></td>
             </tr>
             <tr>
               <td>Email list size</td>
@@ -1698,9 +1712,8 @@ h3 {
   <!-- ============ PILLARS 4 & 5: SIDE BY SIDE ============ -->
   <div class="card-row">
 
-  <!-- ============ PILLAR 4: LANDING PAGE ============ -->
+  <!-- ============ LANDING PAGE ============ -->
   <div class="card">
-    <div class="pillar-label">Pillar 4</div>
     <h2>Landing Page - Milestones</h2>
 
     <div class="task-row">
@@ -1731,9 +1744,8 @@ h3 {
     </div>
   </div>
 
-  <!-- ============ PILLAR 5: LEAD MAGNET ============ -->
+  <!-- ============ LEAD MAGNET ============ -->
   <div class="card">
-    <div class="pillar-label">Pillar 5</div>
     <h2>Lead Magnet - Milestones</h2>
 
     <div class="task-row">
@@ -1939,6 +1951,7 @@ h3 {
       customTasks: {},
       collapsed: {},
       essayLog: [],
+      collabLog: [],
       statsLocked: {},
       weeklyWins: [],
       progressLog: []
@@ -1960,6 +1973,7 @@ h3 {
         customTasks: parsed.customTasks || d.customTasks,
         collapsed: parsed.collapsed || d.collapsed,
         essayLog: parsed.essayLog || d.essayLog,
+        collabLog: parsed.collabLog || d.collabLog,
         statsLocked: parsed.statsLocked || d.statsLocked,
         weeklyWins: parsed.weeklyWins || d.weeklyWins,
         progressLog: parsed.progressLog || d.progressLog
@@ -2074,6 +2088,12 @@ h3 {
     if (data.tasks['substack-essay']) {
       var panel = document.getElementById('essayTrackerPanel');
       if (panel) panel.classList.add('open');
+    }
+
+    // Collab tracker panel - open if collab was checked
+    if (data.tasks['substack-collab']) {
+      var collabPanelEl = document.getElementById('collabTrackerPanel');
+      if (collabPanelEl) collabPanelEl.classList.add('open');
     }
   }
 
@@ -2273,6 +2293,36 @@ h3 {
     showToast('Essay saved!');
   });
 
+  // ============ COLLABORATION TRACKER ============
+  var collabCheckbox = document.querySelector('[data-task="substack-collab"]');
+  var collabPanel = document.getElementById('collabTrackerPanel');
+
+  if (collabCheckbox && collabPanel) {
+    collabCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        collabPanel.classList.add('open');
+      } else {
+        collabPanel.classList.remove('open');
+      }
+    });
+  }
+
+  document.getElementById('collabSubmitBtn').addEventListener('click', function() {
+    var note = document.getElementById('collabNote').value.trim();
+    if (!note) {
+      showToast('Add a name or note first!');
+      return;
+    }
+    var entry = {
+      note: note,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+    data.collabLog.push(entry);
+    save(data);
+    document.getElementById('collabNote').value = '';
+    showToast('Collaboration saved!');
+  });
+
   // ============ SUBMIT WEEK ============
   function buildWeekSnapshot() {
     // Compute task completion count
@@ -2458,6 +2508,11 @@ h3 {
     document.getElementById('essaySubtitle').value = '';
     currentEssayRating = 0;
     updateStarDisplay(0);
+
+    // Close collab tracker panel and clear fields
+    var collabPanelEl = document.getElementById('collabTrackerPanel');
+    if (collabPanelEl) collabPanelEl.classList.remove('open');
+    document.getElementById('collabNote').value = '';
 
     save(data);
     submitWeekDialog.classList.remove('active');
@@ -2876,12 +2931,12 @@ h3 {
   });
 
   // ============ SHARE ============
-  function checkMark(val) { return val ? '\u2705' : '\u2B1C'; }
+  function checkMark(val) { return val ? '[x]' : '[ ]'; }
 
   function generateShareText() {
     var lines = [];
     var date = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    lines.push('A LITTLE WOO \u2728 Weekly Check-In');
+    lines.push('A LITTLE WOO - Weekly Check-In');
     lines.push('Joanne | ' + date);
     lines.push('');
 
@@ -2895,7 +2950,7 @@ h3 {
     WEEKLY_CUSTOM_SECTIONS.forEach(function(section) {
       totalTasks += (data.customTasks[section] || []).length;
     });
-    lines.push(tasksCompleted + '/' + totalTasks + ' weekly tasks \u00B7 ' + (data.counters['substack-comments'] || 0) + '/5 comments \u00B7 ' + (data.counters['linkedin-posts'] || 0) + '/2 posts');
+    lines.push(tasksCompleted + '/' + totalTasks + ' weekly tasks | ' + (data.counters['substack-comments'] || 0) + '/5 comments | ' + (data.counters['linkedin-posts'] || 0) + '/2 posts');
     lines.push('');
 
     // Substack
@@ -2904,15 +2959,15 @@ h3 {
     var notesDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
     var notesKeys = ['substack-notes-mon','substack-notes-tue','substack-notes-wed','substack-notes-thu','substack-notes-fri','substack-notes-sat','substack-notes-sun'];
     var notesStr = notesDays.map(function(d, i) { return data.tasks[notesKeys[i]] ? d : '_'; }).join(' ');
-    lines.push('\u270D\uFE0F Notes: ' + notesStr);
-    lines.push('\u{1F4AC} Commented on other Substacks: ' + (data.counters['substack-comments'] || 0) + '/5');
+    lines.push('- Notes: ' + notesStr);
+    lines.push('- Commented on other Substacks: ' + (data.counters['substack-comments'] || 0) + '/5');
     lines.push(checkMark(data.tasks['substack-collab']) + ' Collaboration initiated');
     (data.customTasks['substack-weekly'] || []).forEach(function(t) { lines.push(checkMark(t.done) + ' ' + t.text); });
     lines.push('');
 
     // LinkedIn
     lines.push('LINKEDIN');
-    lines.push('\u{1F4DD} Posts this week: ' + (data.counters['linkedin-posts'] || 0) + '/2');
+    lines.push('- Posts this week: ' + (data.counters['linkedin-posts'] || 0) + '/2');
     lines.push(checkMark(data.tasks['linkedin-engagement']) + ' Meaningful engagement');
     (data.customTasks['linkedin-weekly'] || []).forEach(function(t) { lines.push(checkMark(t.done) + ' ' + t.text); });
     lines.push('');
@@ -2926,12 +2981,12 @@ h3 {
     lines.push('');
 
     // Prompts
-    lines.push('\u2014\u2014\u2014');
+    lines.push('---');
     lines.push('');
-    lines.push('\u{1F3C6} My win this week:');
+    lines.push('My win this week:');
     lines.push('[Fill in here]');
     lines.push('');
-    lines.push('\u{1F9F1} One thing I\'m stuck on or struggling with:');
+    lines.push('One thing I\'m stuck on or struggling with:');
     lines.push('[Fill in here]');
 
     return lines.join('\n');
